@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboasrd!!!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href= "/fonts/css/all.css" />
+   <link rel="stylesheet" href="order-fulfilment.css">
+   <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+   <link rel="stylesheet" href=" https://printjs-4de6.kxcdn.com/print.min.css">
+   <style>
+       table,td{
+        border: 1px solid #5EB8C9;
+        border-spacing:0;
+        border-collapse: collapse;
+       }
+       th{
+           border: 1px solid white;
+       }
+   </style>
+</head>
+<body>
+  <section class="page-container">
+      <!-- side start here -->
+      <div class="side-bar">
+        <div class="side-bar-header">
+         <div class="side-bar-header-img-container">
+             <img src="assests/images/max-logo.png" alt="">
+         </div>
+        </div>
+        <div class="side-bar-container">
+         <ul>
+             <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li>
+             <li  id="menu2">  <span class="classPointer side-bar-heading" id="toggle-sales">
+                 
+                 <div><span>  <i class="fa-solid fa-basket-shopping"></i></span>  <span>Sales</span> </div> 
+                 <div>
+                   
+                     <span id="sales-left">
+                         <i class="fa-solid fa-angle-left"></i>
+                     </span>
+                     <span id="sales-down">  <i class="fa-solid fa-angle-down"></i></span>
+                    
+                 </div>
+             </span> 
+         </li>
+ 
+                 <ul id="sales-container"hidden>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Raise Order</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Full Order</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Sales Lists</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>All Sales list</span> </div> </li>
+             </ul>
+ 
+             <li id="menu3">
+                 <span class="classPointer side-bar-heading" id="toggle-inv">
+                 
+                     <div><span><i class="fa-solid fa-file-invoice"></i></span>  <span>Manage Inventory</span> </div> 
+                     <div>
+                       
+                         <span id="inv-left">
+                             <i class="fa-solid fa-angle-left"></i>
+                         </span>
+                         <span id="inv-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                        
+                     </div>
+                 </span> 
+             </li>
+                 
+                 <ul id="inv-container" >
+                 <li> <div><span><i class="fa-solid fa-truck"></i></span>  <span>Transfer Inventory</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li>
+               
+             </ul>
+ 
+             <li id="menu4">
+ 
+                 <span class="classPointer side-bar-heading" id="toggle-report">
+                 
+                     <div><span><i class="fa-solid fa-magnifying-glass-chart"></i> </span>  <span>Report</span> </div> 
+                   
+                     <div>
+                       
+                         <span id="report-left">
+                             <i class="fa-solid fa-angle-left"></i>
+                         </span>
+                         <span id="report-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                        
+                     </div>
+                 </span> 
+            
+             </li>
+             <ul id="report-container"hidden>
+                 <li> <div><span><i class="fa-solid fa-chart-pie"></i></span>  <span>Sales Report</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-money-bill-trend-up"></i></span>  <span>Customer purchase Report</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-arrows-rotate"></i></span>  <span>Back Orders</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-chart-bar"></i></span>  <span>Stock report</span> </div> </li>
+         </ul>
+         </ul>
+ 
+        </div>
+ 
+    </div>
+    <!-- sidebar end here -->
+   <div class="main-body">
+    <nav class="nav-bar">
+        <div class="nav-menu">
+            <div class="left-menu nav-menu-flex-child"><i class="fa-solid fa-bars classPointer" id="menu-bar"></i></div>
+            <div class="center-menu nav-menu-flex-child">
+                <div class="logo-container">
+                    <!-- <img src="assests/images/max-logo.png" alt=""> -->
+                
+                </div>
+            </div>
+            <div class="right-menu nav-menu-flex-child">
+                <div class="dropdown">
+                    <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
+                    <div class="dropdown-content">
+                      <a href="#"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
+                    </div>
+                  </div> 
+
+            </div>
+        </div>
+    </nav>
+    <section class="main-body-container">
+        <!-- <button class="btn-secondary-light btn-sm">close</button>
+        <button class="btn-secondary-dark btn-sm">close</button> -->
+       
+     <div class="order-fulfiment-section">
+        <div style="text-align: end;" id="refresh-search-container" hidden><button class="btn-sm btn-secondary-light" id="refresh_search">Refresh data <span><i class="fa-solid fa-arrows-rotate" ></i></span> </button></div>
+         <div class="filter-section">
+             <div class="status-filter-section">
+                 <select name="" id="select-order-status">
+                     <option value=""selected disabled>Select order status</option>
+                     <option value="Open">OPEN</option>
+                     <option value="Close">CLOSE</option>
+                 </select>
+             </div>
+             <div class="status-filter-section">
+                <div class="search-order-number">
+                    <div class="input-order-number"> <input type="text" placeholder="search with order number"></div>
+                    <div class="input-order-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                   
+                </div>
+               
+            </div>
+            <div class="status-filter-section">
+            <input type="date" name="" id="date-raised">
+            </div>
+         </div>
+         <div class="table-section">
+             <table style="width: 100%;">
+                <thead><tr>
+                    <th>Order-Number</th>
+                    <th>Order raised by</th>
+                    <th>Date Raised</th>
+                    <th>Order-Status</th>
+                    <th>Warehouse</th>
+                    <th>Action</th>
+                </tr></thead>
+                <tbody id="orders">
+
+                </tbody>
+           
+            
+            </table>
+         </div>
+     </div>
+     <!-- order fulfilment section end here -->
+ <div hidden>
+ <div id="invoice">
+     <h3 style="text-align: center; font-weight: 500;">Invoice</h3>
+     <div style="display: flex;">
+        <div style="flex: 25%; border: 1px solid #5EB8C9;padding:10px;flex-grow: 0;box-sizing: border-box;">
+            <div style="width:100%">
+                <img src="assests/images/max-logo.png" style="width: 100%" alt="">
+            </div>
+
+        </div>
+        <div style="flex: 25%; border: 1px solid #5EB8C9;flex-grow:0; border-left: 0;border-right: 0; box-sizing: border-box;">
+            <div style="width:100%; padding:5px; white-space: nowrap;box-sizing: border-box;" >
+               <span>
+                <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Max-international</h5>
+                <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Mobile:</h5>
+               <h5 style="box-sizing: border-box; margin: 0;padding: 0;">9999999999</h5>
+               <h5 style="box-sizing: border-box; margin: 0;padding: 0;"> Address : </h5>
+               <h5 style="box-sizing: border-box; margin: 0;padding: 0;"> Ikeja maryland Lagos</h5>
+               <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Email:</h5>
+              <h5 style="box-sizing: border-box; margin: 0;padding: 0;"> max-internation@max.com</h5>
+              <h5 style="box-sizing: border-box; margin: 0;padding: 0;">hone Number:</h5>
+              <h5 style="box-sizing: border-box; margin: 0;padding: 0;">08025----------37</h5>
+               </span>
+            </div>
+
+        </div>
+        <div style="flex: 50%; border: 1px solid #5EB8C9;">
+            <div style="display: flex;flex-direction: column;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="flex: 50%;padding: 10px;"box-sizing: border-box;><span>Order Number</span><span>345678</span></div>
+                    <div style="flex: 50%;border-left:1px solid #5EB8C9; padding: 10px;box-sizing: border-box;"><span>Dated</span><span>12-05-2022</span></div>
+                </div>
+                <div style="flex:100%; border: 1px solid #5EB8C9;border-right: none;border-left: none;box-sizing: border-box;"><span>Referrence Number</span></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- heading end here -->
+    <div style="display: flex; border: 1px solid #5EB8C9 ; border-top: none;">
+        <div style="flex: 50%; border-right:  1px solid #5EB8C9; padding: 10px;box-sizing: border-box;">
+            <h5 style="box-sizing: border-box;">Customer Address: Adekunle street</h5>
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Name: John P</h5>
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Mobile: 97788754544</h5>
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Email: john@gmail.com</h5>
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;">loyat reward poit:200</h5>
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Accumulated point: 1000</h5>
+
+        </div>
+
+        <div style="flex: 50%; border-right:  1px solid #5EB8C9; padding: 10px;box-sizing: border-box;">
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Shipping Address: 39 Olonode Street </h5>
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;">Name: John P</h5>
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;">
+                Mobile: 97788754544
+            </h5>
+            <h5 style="box-sizing: border-box; margin: 0;padding: 0;"> Email: john@gmail.com</h5>
+        </div>
+
+    </div>
+    <!-- customer-info end here -->
+    <div style="box-sizing: border-box; width: 100%;border: 1px solid #5EB8C9;border-top:0;padding: 10px"></div>
+    <div>
+        <table style="width: 100%;  border: 1px solid #5EB8C9;
+        border-spacing:0;
+        border-collapse: collapse;" >
+            <thead>
+                <tr>
+                    <th style=" border: 1px solid white;
+                    border-spacing:0; background-color: #5EB8C9;
+                    border-collapse: collapse;">Description</th>
+                    <th style=" border: 1px solid white;background-color: #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;">SKU</th>
+                    <th style=" border: 1px solid white;background-color: #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;">LOT</th>
+                    <th style=" border: 1px solid white;background-color: #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;">Unit price (Naira)</th>
+                    <th style=" border: 1px solid white;background-color: #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;">Quantity</th>
+                    <th style=" border: 1px solid  white;background-color: #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;">Total Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style=" border: 1px solid #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;"> N-Fuze Bro Single V2 EN US</td>
+                     <td style=" border: 1px solid #5EB8C9;
+                     border-spacing:0;
+                     border-collapse: collapse;"> MENNGX002306</td>
+                   <td style=" border: 1px solid #5EB8C9;
+                   border-spacing:0;
+                   border-collapse: collapse;"> 8002001</td>
+                    <td style=" border: 1px solid #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;"> 7000</td>
+                  <td style=" border: 1px solid #5EB8C9;
+                  border-spacing:0;
+                  border-collapse: collapse;"> 10</td>
+                    <td style=" border: 1px solid #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;"> 35000</td>
+                </tr>
+                <tr>
+                    <td style=" border: 1px solid #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;">  N-Fuze Bro Single V2 EN US</td>
+                     <td style=" border: 1px solid #5EB8C9;
+                     border-spacing:0;
+                     border-collapse: collapse;"> MENNGX002306</td>
+                   <td style=" border: 1px solid #5EB8C9;
+                   border-spacing:0;
+                   border-collapse: collapse;"> 8002001</td>
+                    <td style=" border: 1px solid #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;"> 7000</td>
+                     <td style=" border: 1px solid #5EB8C9;
+                     border-spacing:0;
+                     border-collapse: collapse;"> 10</td>
+                   <td style=" border: 1px solid #5EB8C9;
+                   border-spacing:0;
+                   border-collapse: collapse;"> 35000</td>
+                </tr>
+                <tr>
+                    <td style=" border: 1px solid #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;"> N-Fuze Bro Single V2 EN US</td>
+                     <td style=" border: 1px solid #5EB8C9;
+                     border-spacing:0;
+                     border-collapse: collapse;"> MENNGX002306</td>
+                     <td style=" border: 1px solid #5EB8C9;
+                     border-spacing:0;
+                     border-collapse: collapse;"> 8002001</td>
+                    <td style=" border: 1px solid #5EB8C9;
+                    border-spacing:0;
+                    border-collapse: collapse;"> 7000</td>
+                     <td style=" border: 1px solid #5EB8C9;
+                     border-spacing:0;
+                     border-collapse: collapse;"> 10</td>
+                     <td style=" border: 1px solid #5EB8C9;
+                     border-spacing:0;
+                     border-collapse: collapse;"> 35000</td>
+                </tr>
+                <tr>
+                    <td colspan="5"style=" border: 1px solid #5EB8C9;border-spacing:0;border-collapse: collapse; text-align:end" >Sub-Total</td>
+                    <td style=" border: 1px solid #5EB8C9;">30000</td>
+                </tr>
+                <tr>
+                    <td colspan="5"style=" border: 1px solid #5EB8C9;border-spacing:0;border-collapse: collapse; text-align:end" >Discount allowed</td>
+                    <td style=" border: 1px solid #5EB8C9;">30000</td>
+                </tr>
+                <tr>
+                    <td colspan="5"style=" border: 1px solid #5EB8C9;border-spacing:0;border-collapse: collapse; text-align:end" >Grand-total</td>
+                    <td style=" border: 1px solid #5EB8C9;">30000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="border: #5EB8C9 solid 1px; border-top: 0;padding: 20px;">
+
+        <span>Amount in words: Thirty Thousand Three hundred and thirty five naira</span>
+        </div>
+        <div style="border: #5EB8C9 solid 1px; border-top: 0;padding: 20px;">
+
+            <span>Note:</span>
+            </div>
+            <div style="border: #5EB8C9 solid 1px; border-top: 0;padding:5px;">
+    <h4>Terms and Condition</h4>
+               <p style="max-width: 400px;">
+                <p> 1)no warranty for damaged or burnt goods.</p>
+                <p>  2) for warranty/repairs/replacement bring invoice copy.</p>
+                <p> 3)we reserve lien on goods till full payment is made.</p>
+               <p>  4)Goods once sold will not be taken back. </p>
+                   <p>6)warranty at the sole discretion of the respective service center.</p>
+               
+              <p> 7)cheque bouncing attracts an unconditional fine </p>
+               </p>
+                </div>
+            <div style="border: #5EB8C9 solid 1px; border-top: 0; display: flex;">
+
+                 <div style="flex: 50%;flex-grow: 0; border-right:#5EB8C9 solid 1px ;padding:0px 20px 55px 20px;">
+                    <h4>Customer Signature</h4>
+                </div>
+
+                <div style="flex: 50%;flex-grow: 0;padding:5px 20px 55px 20px;">
+                    <h4>Authorised Signatory</h4>
+                </div>
+                </div>
+          
+            </div>
+ </div>
+</div>
+
+     <!-- order fullfilment end here -->
+
+    </section>
+  <!-- main body container end here -->
+</div>
+<!-- main body here -->
+  </section>
+    <script src="jquery.js"></script>
+    <script src="gen.js"></script>
+    <script src="data.js"></script>
+</body>
+<script>
+    let filterData = customers;
+    
+   
+   $("#select-order-status").on("change",()=>{
+    let newCustomerData
+    const dataInput=[];
+    filterData.forEach(element => {
+     newCustomerData=  element["order"].filter((order)=>{
+        return order.orderStatus === $("#select-order-status").val()
+    }) 
+   if(newCustomerData.length!=0){
+     element["order"]=newCustomerData;
+     dataInput.push(element)
+   }
+    });
+    mapOrder(dataInput)
+    filterData = dataInput;
+    $("#refresh-search-container").show();
+  
+   })
+
+
+   $("#refresh_search").on("click",()=>{
+      let data = customers;
+       $("#refresh-search-container").hide()
+       mapOrder(data)
+       filterData=customers
+   })
+   mapOrder(customers);
+
+    function mapOrder(customers){
+        $("#orders").empty()
+        customers.forEach(element => {
+           element["order"].map((order)=>{
+             const td1 = document.createElement("td")
+             const td2 = document.createElement("td")
+             const td3 = document.createElement("td")
+             const td4 = document.createElement("td")
+             const td5 = document.createElement("td")
+             const td6 = document.createElement("td")
+             const tr = document.createElement("tr")
+             tr.append(td1)
+             tr.append(td2)
+             tr.append(td3)
+             tr.append(td4)
+             tr.append(td5)
+             tr.append(td6)
+             td1.textContent=order.orderNumber
+             td2.textContent=order.raisedBy
+             td3.textContent=order.date
+             td4.textContent=order.orderStatus
+             td5.textContent=order.warehouse
+             const span1 = document.createElement("span")
+             const span2 = document.createElement("span")
+             span1.setAttribute("class","action-heading")
+             span2.setAttribute("class","action-heading")
+             span1.textContent="Action"
+             const caretIcon = document.createElement("i")
+             caretIcon.setAttribute("class","fa fa-caret-down")
+             span2.append(caretIcon)
+             const div = document.createElement("div")
+             div.setAttribute("class","action-button-dropdown-content")
+             const p1 = document.createElement("p")
+             const p2 = document.createElement("p")
+             p1.setAttribute("class","action-button")
+             p2.setAttribute("class","action-button")
+             const span3 = document.createElement("span")
+             const span4 = document.createElement("span")
+             const span5 = document.createElement("span")
+             const span6 = document.createElement("span")
+             const cash_register_icon = document.createElement("i")
+             const pdf_icon = document.createElement("i")
+             cash_register_icon.setAttribute("class","fa-solid fa-cash-register")
+             pdf_icon.setAttribute("class","fa-solid fa-file-pdf")
+             span3.setAttribute("class","action-heading")
+             span4.setAttribute("class","action-heading")
+             span5.setAttribute("class","action-heading")
+             span6.setAttribute("class","action-heading")
+       span3.textContent="Fullfil-Order";
+       span5.textContent="Print-Invoice";
+       span4.append(cash_register_icon)
+       span6.append(pdf_icon)
+       p1.append(span3)
+       p1.append(span4)
+       p2.append(span5)
+       p2.append(span6)
+        div.append(p1)
+        div.append(p2)
+             const action_btns = document.createElement("div")
+             action_btns.setAttribute("class","action-buttons btn-secondary btn-sm")
+             action_btns.append(span1)
+             action_btns.append(span2)
+             action_btns.append(div)
+             td6.append(action_btns);
+             tr.append(td6)
+             $("#orders").append(tr)
+             $(p2).on("click",()=>{
+
+               printJS({
+                   printable:"invoice",
+                   type:"html",
+                   honorColor: true,
+                   targetStyles:["*"]
+
+               })
+             })
+             if(order.orderStatus=="Open") {
+           $(p2).hide()};
+
+           })
+       });
+    }
+  
+ $("#date-raised").on("change",()=>{
+    let newCustomerData
+    const dataInput=[];
+    filterData.forEach(element => {
+     newCustomerData=  element["order"].filter((order)=>{
+        return order.date === $("#date-raised").val()
+    }) 
+    console.log(newCustomerData)
+   if(newCustomerData.length!=0){
+     element["order"]=newCustomerData;
+     dataInput.push(element)
+   }
+    });
+    console.log(dataInput)
+    mapOrder(dataInput)
+    filterData = dataInput;
+    $("#refresh-search-container").show();
+ })
+
+</script>
+
+
+
+
+
+
+</html>

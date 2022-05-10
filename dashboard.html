@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboasrd!!!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href= "/fonts/css/all.css" />
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0 "></script>
+</head>
+<body>
+    <!-- page container start here -->
+  <section class="page-container">
+      <!-- side start here -->
+    <div class="side-bar">
+        <div class="side-bar-header">
+         <div class="side-bar-header-img-container">
+             <img src="assests/images/max-logo.png" alt="">
+         </div>
+        </div>
+        <div class="side-bar-container">
+         <ul>
+             <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li>
+             <li  id="menu2">  <span class="classPointer side-bar-heading" id="toggle-sales">
+                 
+                 <div><span>  <i class="fa-solid fa-basket-shopping"></i></span>  <span>Sales</span> </div> 
+                 <div>
+                   
+                     <span id="sales-left">
+                         <i class="fa-solid fa-angle-left"></i>
+                     </span>
+                     <span id="sales-down">  <i class="fa-solid fa-angle-down"></i></span>
+                    
+                 </div>
+             </span> 
+         </li>
+ 
+                 <ul id="sales-container"hidden>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Raise Order</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Full Order</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Sales Lists</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>All Sales list</span> </div> </li>
+             </ul>
+ 
+             <li id="menu3">
+                 <span class="classPointer side-bar-heading" id="toggle-inv">
+                 
+                     <div><span><i class="fa-solid fa-file-invoice"></i></span>  <span>Manage Inventory</span> </div> 
+                     <div>
+                       
+                         <span id="inv-left">
+                             <i class="fa-solid fa-angle-left"></i>
+                         </span>
+                         <span id="inv-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                        
+                     </div>
+                 </span> 
+             </li>
+                 
+                 <ul id="inv-container" >
+                 <li> <div><span><i class="fa-solid fa-truck"></i></span>  <span>Transfer Inventory</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li>
+               
+             </ul>
+ 
+             <li id="menu4">
+ 
+                 <span class="classPointer side-bar-heading" id="toggle-report">
+                 
+                     <div><span><i class="fa-solid fa-magnifying-glass-chart"></i> </span>  <span>Report</span> </div> 
+                   
+                     <div>
+                       
+                         <span id="report-left">
+                             <i class="fa-solid fa-angle-left"></i>
+                         </span>
+                         <span id="report-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                        
+                     </div>
+                 </span> 
+            
+             </li>
+             <ul id="report-container"hidden>
+                 <li> <div><span><i class="fa-solid fa-chart-pie"></i></span>  <span>Sales Report</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-money-bill-trend-up"></i></span>  <span>Customer purchase Report</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-arrows-rotate"></i></span>  <span>Back Orders</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-chart-bar"></i></span>  <span>Stock report</span> </div> </li>
+         </ul>
+         </ul>
+ 
+        </div>
+ 
+    </div>
+    <!-- sidebar end here -->
+    <!-- main body container start here -->
+   <div class="main-body">
+       <!-- navbar start here -->
+    <nav class="nav-bar">
+        <div class="nav-menu">
+            <div class="left-menu nav-menu-flex-child"><i class="fa-solid fa-bars classPointer" id="menu-bar"></i></div>
+            <div class="center-menu nav-menu-flex-child">
+                <div class="logo-container">            
+                </div>
+            </div>
+            <div class="right-menu nav-menu-flex-child">
+                <div class="dropdown">
+                    <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
+                    <div class="dropdown-content">
+                      <a href="#"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
+                    </div>
+                  </div> 
+
+            </div>
+        </div>
+    </nav>
+    <!-- end here -->
+    <section class="main-body-container">
+        <!-- display performance start here -->
+        <div class="section-display-performance">
+            <div class="performance-card">
+           <div class="performance-card-section" style="background-color:rgb(0,192,239);">
+            <i class="fa-solid fa-hand-holding-dollar performance-card-icon"></i>
+           </div>
+           <div class="card-content">
+            <h5>Total Order Fulfiled</h5>
+            <h1 class="performace-card-data">70</h1>
+        </div>
+            </div>
+            <div class="performance-card">
+                <div class="performance-card-section" style="background-color:rgb(243,156,18);">
+                    <i class="fa-solid fa-circle-xmark performance-card-icon"></i>
+                </div>
+                <div class="card-content">
+                    <h5>Total Order Open</h5>
+                    <h1 class="performace-card-data">20</h1>
+                </div>
+                 </div>
+                 <div class="performance-card">
+                    <div class="performance-card-section" style="background-color:rgb(4,165,89);">
+                        <i class="fa-solid fa-circle-check performance-card-icon "></i>
+                    </div>
+                    <div class="card-content">
+                        <h5>Total Order Close</h5>
+                        <h1 class="performace-card-data">50</h1>
+                    </div>
+                     </div>
+                     <div class="performance-card">
+                        <div class="performance-card-section" style="background-color:rgb(221,75,57);">
+                            <i class="fa-solid fa-arrows-rotate performance-card-icon"></i>
+                        </div>
+                         </div>
+
+                         <!-- <div class="performance-card">
+                            <div class="performance-card-section" style="background-color:rgb(0,192,239);">
+                             <i class="fa-solid fa-hand-holding-dollar performance-card-icon"></i>
+                            </div>
+                             </div> -->
+                             <!-- <div class="performance-card">
+                                 <div class="performance-card-section" style="background-color:rgb(243,156,18);">
+                                     <i class="fa-solid fa-truck performance-card-icon"></i>
+                                 </div>
+                                 <div class="card-content">
+                                    <h5>Transfers</h5>
+                                    <h1 class="performace-card-data">50</h1>
+                                </div>
+                                  </div> -->
+                                  <!-- <div class="performance-card">
+                                     <div class="performance-card-section" style="background-color:rgb(4,165,89);">
+                                         <i class="fa-solid fa-people-carry-box performance-card-icon "></i>
+                                     </div>
+                                     <div class="card-content">
+                                        <h5>Receipts</h5>
+                                        <h1 class="performace-card-data">50</h1>
+                                    </div>
+                                      </div> -->
+                                      <!-- <div class="performance-card">
+                                         <div class="performance-card-section" style="background-color:rgb(221,75,57);">
+                                             <i class="fa-solid fa-arrows-rotate performance-card-icon"></i>
+                                         </div>
+                                          </div> -->
+
+        </div>
+        <!-- display performance end here -->
+        <div class="section-display-growth">
+            <div class="growth-card" style=" background-color: rgb(221,75,57);;"></div>
+<div class="growth-card" style="background-color: rgb(166,18,166);"></div>
+
+<div class="growth-card" style="background-color:rgb(5,142,242)"></div>
+</div>
+<!-- dispaly growth end here -->
+        
+       <div class="alert-dispaly-section">
+           <div class="stock-alert-section">
+               <h4 style="text-align: center; margin: 10px 0;">Stock Alert</h4>
+               <table>
+                   <thead>
+                       <tr>
+                           <th>
+                               description
+                           </th>
+                           <th>
+                          SKU
+                        </th>
+                        <th>
+                            lot
+                          </th>
+                          <th>
+                          Stock
+                          </th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr>
+                           <td>SWITCH 1 MO EN NG</td>
+                           <td>DENNGA002001</td>
+                           <td>9002001</td>
+                           <td>50</td>
+                       </tr>
+                       <tr>
+                        <td>Max357 Bro Single EN US</td>
+                        <td>NENNGC000602</td>
+                        <td>9002001</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>ATP Bro 25Pk V2 EN US</td>
+                        <td>DNENNGF000702</td>
+                        <td>9002001</td>
+                        <td>50</td>
+                    </tr>
+                    <tr>
+                        <td>ATP 15PK V2 EN</td>
+                        <td>MENUSB000702</td>
+                        <td>9002001</td>
+                        <td>50</td>
+                    </tr>
+                   </tbody>
+               </table>
+           </div>
+           <div class="lot-expired-section">
+            <h4 style="text-align: center; margin: 10px 0;">Expired Lots</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            description
+                        </th>
+                        <th>
+                       SKU
+                     </th>
+                     <th>
+                         lot
+                       </th>
+                       <th>
+                       Stock
+                       </th>
+                       <th>
+                        Expired Date
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SWITCH 1 MO EN NG</td>
+                        <td>DENNGA002001</td>
+                        <td>9002001</td>
+                        <td>50</td>
+                        <td>13/05/2034</td>
+                    </tr>
+                    <tr>
+                     <td>Max357 Bro Single EN US</td>
+                     <td>NENNGC000602</td>
+                     <td>9002001</td>
+                     <td>50</td>
+                     <td>13/05/2014</td>
+                 </tr>
+                 <tr>
+                     <td>ATP Bro 25Pk V2 EN US</td>
+                     <td>DNENNGF000702</td>
+                     <td>9002001</td>
+                     <td>50</td>
+                     <td>13/05/2022</td>
+                 </tr>
+                 <tr>
+                     <td>ATP 15PK V2 EN</td>
+                     <td>MENUSB000702</td>
+                     <td>9002001</td>
+                     <td>50</td>
+                     <td>16/05/2024</td>
+                 </tr>
+                </tbody>
+            </table>
+           </div>
+       </div>
+       <!-- alert section end here -->
+       <div class="anlytics-sections">
+           <div class="analytics-section">
+            <canvas id="monthy-sales" style="width:100%"></canvas>
+           </div>
+           <div class="analytics-section">
+               <select name="" id="select-prod" style="padding: 5px; border: 1px solid var(---primaryColor);">
+                   <option value="" disabled selected>Select a product</option>
+                   <option value="Basic Enrollment Kit EN NG">Basic Enrollment Kit EN NG</option>
+                   <option value="N-Fuze Bro Single V2 EN US">N-Fuze Bro Single V2 EN US</option>
+                   <option value="ATP Bro Single V2 EN US">ATP Bro Single V2 EN US</option>
+                   <option value="ATP 15PK V2 EN">ATP 15PK V2 EN</option>
+               </select>
+               <div id="attachment">
+               </div>
+           
+           </div>
+    
+
+       </div>
+       <div class="pie-analytics-section">
+        <div class="analytics-section">
+            <canvas id="myChart" style="width:100px;height: 50px;"></canvas>
+           </div>
+           
+       </div>
+
+    </section>
+  <!-- main body container end here -->
+   </div>
+     <!-- main body here -->
+  </section>
+  <!-- page container end here -->
+
+
+
+    <script src="jquery.js"></script>
+    <script src="gen.js"></script>
+</body>
+<script>
+let salesData = [
+    {
+        prod:"Basic Enrollment Kit EN NG",
+        sales:[20, 25, 40, 55, 17]
+    },
+    {
+        prod:"N-Fuze Bro Single V2 EN US",
+        sales:[22, 10, 35, 40, 17]
+    },
+    {
+        prod:"ATP Bro Single V2 EN US",
+       sales: [0, 35, 40, 20, 17]
+    },
+    {
+        prod:"ATP 15PK V2 EN",
+        sales: [30, 22, 25,50 , 65]
+    },
+
+]
+$("#select-prod").on("change",()=>{
+    $("#attachment").empty();
+    filterSales = salesData.filter((sale)=>{
+        return sale.prod== $("#select-prod").val();
+    })
+     prod = filterSales[0].sales;
+     console.log(prod)
+     productSales(prod)
+})
+
+salesChart();
+function salesChart(){
+var salesMonth = ["Jan", "Feb", "Mar", "Apr", "May"];
+var sales = [20, 49, 30, 55, 15];
+new Chart("monthy-sales", {
+  type: "bar",
+  data: {
+    labels: salesMonth,
+    datasets: [{
+      backgroundColor:["red", "green","blue","orange","brown"],
+      data: sales
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "sales from january-may"
+    }
+  }
+});
+
+    }
+
+function productSales(prod){
+ let canv = document.createElement("canvas");
+ canv.setAttribute("id","product-sales")
+$("#attachment").append(canv);
+var salesMonth = ["Jan", "Feb", "Mar", "Apr", "May"];
+var sales = prod
+new Chart("product-sales", {
+  type: "bar",
+  data: {
+    labels: salesMonth,
+    datasets: [{
+      backgroundColor:["red", "green","blue","orange","brown"],
+      data: sales
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Each product sales from january-may"
+    }
+  }
+});
+    }
+
+var xValues = ["ATP 15PK V2 EN", "ATP Bro Single V2 EN US", "N-Fuze Bro Single V2 EN US", "Basic Enrollment Kit EN NG", "Cellgevity lWk Single EN NG"];
+var yValues = [55, 49, 44, 24, 15];
+var barColors = [
+  "#b91d47",
+  "#00aba9",
+  "#2b5797",
+  "#e8c3b9",
+  "#1e7145"
+];
+
+new Chart("myChart", {
+  type: "pie",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+
+  options: {
+          title: {
+      display: true,
+      text: "Sales contribution of each product for period between jan-may"
+    },
+    legend: {
+      display: true
+    },
+    plugins: {
+      datalabels: {
+        display: true,
+        formatter: (val, ctx) => {
+          return ctx.chart.data.labels[ctx.dataIndex];
+        },
+        color: '#fff',
+        backgroundColor: '#404040'
+      },
+    }
+
+}
+
+
+
+//   options: {
+//     title: {
+//       display: true,
+//       text: "Sales contribution of each product for period between jan-may"
+//     }
+//   }
+});
+
+
+</script>
+</html>

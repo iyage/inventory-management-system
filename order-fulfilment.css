@@ -1,0 +1,93 @@
+.filter-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+.status-filter-section{
+    flex-basis:30%;
+    flex-grow: 0;
+
+}
+.order-fulfiment-section{
+    margin-top: 30px;
+}
+select,input[type="date"],.search-order-number{
+    border:  1px solid var(---primaryColor);
+    width: 100%;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+select:focus,input[type="date"]:focus{
+    outline: none;
+}
+.search-order-number{
+    display: flex;
+    align-items: center;
+    color: var(---primaryColor);
+}
+.input-order-number{
+    flex: 90%;
+}
+.input-order-search-icon{
+    flex: 10%;
+}
+.input-order-number>input[type="text"]{
+width: 100%;
+height: 20px;
+border: 0;
+}
+.input-order-number>input[type="text"]:focus{
+    outline: none;
+}
+th{
+    background-color: var(---primaryColor);
+    color: var(---secondaryColor);
+    padding: 10px;
+}
+tr:nth-child(odd){
+    background-color: var(---secondaryColor);
+}
+.main-body-container{
+    width: min(98%,98.2vw);
+    margin: auto;
+}
+td{
+    padding: 10px; 
+    font-size: 14px;
+}
+.action-buttons{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+}
+.action-button-dropdown-content{
+ position: absolute;
+  padding: 15px 0;
+  left: -3px;
+  right: 0;
+   top: 25px;
+    background-color: var(---secondaryColor);
+    color: var(---primaryColor);
+    display: none;
+    z-index: 10;
+}
+.action-button{
+    padding: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.action-button:hover{
+background-color: var(---primaryColor);
+color: var(---secondaryColor);
+}
+.action-buttons:hover  .action-button-dropdown-content{
+  display: block;
+}
+.action-heading{
+   display: block;
+   white-space: nowrap;
+
+}

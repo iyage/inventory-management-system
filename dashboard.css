@@ -1,0 +1,118 @@
+.main-body-container{
+    width: min(97vw,97.5%);
+ 
+    margin: 30px 0;
+}
+.performance-card{
+    display: flex;
+    justify-content:space-between;
+    box-shadow: 0px 1px 1px 1px rgba(0, 0,0, 0.1);
+    flex-grow: 0;
+    flex: 20%;
+    margin: 20px 10px;
+    height:100px ;
+    border-radius: 10px;
+    /* background-color:var(---secondaryColor) */
+}
+.section-display-performance{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+
+}
+.performance-card-icon{
+    font-size: 50px;
+    color: white;
+}
+.performance-card-section{
+    flex:40%;
+    flex-grow: 0;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+.card-content{
+    padding: 10px 2px;
+    flex:60% ;
+    text-align: center;
+    color: var(---primaryColor);
+
+}
+.performace-card-data{
+    margin-top: 5px;
+    font-size: 60px;
+}
+.growth-card{
+    display: flex;
+    justify-content:space-between;
+    box-shadow: 0px 1px 5px 1px rgba(0, 0,0, 0.1);
+    flex-grow: 0;
+    flex: 30%;
+    margin: 10px;
+    height:150px ;
+    border-radius: 10px;
+}
+.section-display-growth{
+    display: flex;
+    justify-content: space-between;
+  
+}
+.alert-dispaly-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    margin-top: 30px;
+}
+.stock-alert-section,.lot-expired-section{
+    flex: 47%;
+    flex-grow: 0;
+    border-top: solid 3px var(---primaryColor);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0,0, 0.1);
+    padding: 20px;
+}
+table{
+    width: 100%;
+}
+th{
+    background-color: var(---primaryColor);
+    padding: 10px;
+    color: var(---secondaryColor);
+}
+tr:nth-child(odd){
+    background-color: var(---secondaryColor);
+}
+td{
+    padding: 10px;
+    font-size: 12px;
+}
+.anlytics-sections{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+.analytics-section{
+    flex: 47%;
+    flex-grow: 0;
+    border-top: solid 3px var(---primaryColor);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0,0, 0.1);
+    padding: 20px;
+
+}
+.pie-analytics-section{
+    display: flex;
+    justify-content: center;
+}
+.pie-analytics-section>.analytics-section{
+    text-align: center;
+    flex: 80%;
+    flex-grow: 0;
+    border-top: solid 3px var(---primaryColor);
+    box-shadow: 0px 0px 5px 1px rgba(0, 0,0, 0.1);
+    padding: 20px;
+
+}

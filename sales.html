@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales!!!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="create-sales.css">
+    <link rel="stylesheet" href= "/fonts/css/all.css" />
+</head>
+<body>
+    <div class="modal-container" id="modal-container" hidden>
+        <div class="create-customer-modal">
+         <div class="create-customer-modal-wrapper">
+             <div class="modal-header"><span>New User</span></div>
+             <form action="" style="margin: 20px;">
+
+
+               <table id="customer-detail-form">
+              <tr><td> <label for="first-name">Customer First Name</label></td><td>   <input type="text" id="first-name"></td></tr>
+              <tr><td> <label for="last-name">Customer Last Name</label></td><td> <input type="text" id="last-name"></td></tr>
+              <tr><td> <label for="email">Customer Email</label></td><td> <input type="text" id="email"></td></tr>
+              <tr><td> <label for="phone">Customer Phone-Number</label></td><td><input type="text" id="phone"></td></tr>
+              <tr><td> <label for="phone">Customer Type</label></td><td><select name="" id="">
+                <option value="">Walk In</option>
+                <option value="">Partner</option>
+            </select></td></tr>
+               </table>
+
+             </form>
+             <div class="modal-footer"> <button class="btn-sm btn-primary" id="close-customer-form">Close</button> <button class="btn-sm  btn-secondary">Save</button></div>
+             </div>
+        </div>   
+     </div>
+  <section class="page-container">
+   <div class="side-bar">
+       <div class="side-bar-header">
+        <div class="side-bar-header-img-container">
+            <img src="assests/images/max-logo.png" alt="">
+        </div>
+       </div>
+       <div class="side-bar-container">
+        <ul>
+            <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li>
+            <li  id="menu2">  <span class="classPointer side-bar-heading" id="toggle-sales">
+                
+                <div><span>  <i class="fa-solid fa-basket-shopping"></i></span>  <span>Sales</span> </div> 
+                <!-- <i class="fa-solid fa-cart-shopping"></i> -->
+                <div>
+                  
+                    <span id="sales-left">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </span>
+                    <span id="sales-down">  <i class="fa-solid fa-angle-down"></i></span>
+                   
+                </div>
+            </span> 
+        </li>
+
+                <ul id="sales-container"hidden>
+                    <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Raise Order</span> </div> </li>
+                    <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Full Order</span> </div> </li>
+                    <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Sales Lists</span> </div> </li>
+                    <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>All Sales list</span> </div> </li>
+            </ul>
+
+            <li id="menu3">
+                <span class="classPointer side-bar-heading" id="toggle-inv">
+                
+                    <div><span><i class="fa-solid fa-file-invoice"></i></span>  <span>Manage Inventory</span> </div> 
+                    <div>
+                      
+                        <span id="inv-left">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </span>
+                        <span id="inv-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                       
+                    </div>
+                </span> 
+            </li>
+                
+                <ul id="inv-container" >
+                <li> <div><span><i class="fa-solid fa-truck"></i></span>  <span>Transfer Inventory</span> </div> </li>
+                <li> <div><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </div> </li>
+                <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li>
+              
+            </ul>
+            <!-- <i class="fa-solid fa-people-carry-box"></i> -->
+
+            <li id="menu4">
+
+                <span class="classPointer side-bar-heading" id="toggle-report">
+                
+                    <div><span><i class="fa-solid fa-magnifying-glass-chart"></i> </span>  <span>Report</span> </div> 
+                  
+                    <div>
+                      
+                        <span id="report-left">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </span>
+                        <span id="report-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                       
+                    </div>
+                </span> 
+           
+            </li>
+            <ul id="report-container"hidden>
+                <li> <div><span><i class="fa-solid fa-chart-pie"></i></span>  <span>Sales Report</span> </div> </li>
+                <li> <div><span><i class="fa-solid fa-money-bill-trend-up"></i></span>  <span>Customer purchase Report</span> </div> </li>
+                <li> <div><span><i class="fa-solid fa-arrows-rotate"></i></span>  <span>Back Orders</span> </div> </li>
+                <li> <div><span><i class="fa-solid fa-chart-bar"></i></span>  <span>Stock report</span> </div> </li>
+        </ul>
+        </ul>
+
+       </div>
+
+   </div>
+   <div class="main-body">
+    <nav class="nav-bar">
+        <div class="nav-menu">
+            <div class="left-menu nav-menu-flex-child"><i class="fa-solid fa-bars classPointer" id="menu-bar"></i></div>
+            <div class="center-menu nav-menu-flex-child">
+                <div class="logo-container">
+                    <!-- <img src="assests/images/max-logo.png" alt=""> -->
+                
+                </div>
+            </div>
+            <div class="right-menu nav-menu-flex-child">
+                <div class="dropdown">
+                    <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
+                    <div class="dropdown-content">
+                      <a href="#"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
+                    </div>
+                  </div> 
+
+            </div>
+        </div>
+    </nav>
+    <div style="display: flex; justify-content: center;">
+    <section class="main-body-container">
+        <div class="search-customer-details">
+            <div class="search-customer-name  search-customer-details-flex-item">
+                <div class="input-container">
+                    <span class="classPointer" style="width:100%; font-size: 18px;padding:2px; border: 0;"id="sorted-customer-name">search </span>
+                    <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+                   <div class="dropdown-container" style="z-index: 1; position: absolute;top:40px;width:100%;text-align: center;  background-color: var(---secondaryColor);;padding: 10px;" hidden>
+                    <div id="myDropdown">
+                      <input type="text" placeholder="Search....." style="height:40px; width: 95%;" id="search-input">
+                      <div id="customer-names" style="max-height: 100px; overflow-y: scroll;">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-new-customer">
+                    <i class="fa-solid fa-user-plus classPointer primaryColor" id="create-new-user"></i>
+                </div>
+            </div>
+            
+        </div>
+        <div class="hide-customer-details" hidden>
+    <hr>
+    <div class="customer-details">
+       <div class="customer-name customer-details-flex-child"><span class="customer-details-heading">Customer Name :</span> <span id="customer-name"></span> </div>
+       <div class="customer-email customer-details-flex-child"><span class="customer-details-heading">Customer Email :</span> <span id="customer-email"></span></div>
+       <div class="customer-phone-number customer-details-flex-child"><span class="customer-details-heading">Customer Phone Number :</span> <span id="customer-phone"></span> </div>
+       <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Customer Type :</span> <span id="customer-type"></span></div>
+       <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Point Accumulated :</span> <span id="customer-point"></span></div>
+    </div>
+</div>
+    <hr>
+    <div class="alert-error">
+      <h4>please insert missing value</h4>
+    </div>
+    <div class="order-fullfilment">
+
+        <div class="order-fullfilment-input   order-fullfilment-flex-child" id="warehouse-input-container">
+            <div class="order-fullfilment-input-container">
+                <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="Warehouse Location----------" disabled id="warehouse-input">
+                <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+        
+                <div class="warehouse-dropdown-container dropdown-orderdetails-menu" hidden  id="warehouse-dropdown-menu" >
+                    <div>
+                      <div id="warehouses" style="max-height: 100px; overflow-y: scroll;">
+                      </div>
+                    </div>
+                  </div>
+
+            </div>
+        </div>
+
+        <div class="order-fullfilment-input  order-fullfilment-flex-child">
+           
+
+            <div class="order-fullfilment-input-container " id="description-input-container">
+                <input type="text" class="classPointer" style="width:97%; font-size: 16px;padding:2px; border: 0;" placeholder="Description----------" disabled  id="description-input">
+                <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+               <span hidden><i class="fa-solid fa-caret-up classPointer primaryColor"></i></span> 
+               <div class="warehouse-dropdown-container dropdown-orderdetails-menu" id="description-dropdown-menu"  hidden>
+                <div>
+                  <input type="text" placeholder="Search....." style="height:40px; width: 95%;" id="search-description">
+                  <div id="descriptions" style="max-height: 100px; overflow-y: scroll; width: 100%; padding: 0;">
+                
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+
+
+        <div class="order-fullfilment-input  order-fullfilment-flex-child">
+
+
+            <div class="order-fullfilment-input-container " id="sku-input-container">
+                <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="SKU----------" disabled id="sku-input">
+                <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+               <span hidden><i class="fa-solid fa-caret-up classPointer primaryColor"></i></span> 
+               <div class="warehouse-dropdown-container dropdown-orderdetails-menu"  id="sku-dropdown-menu"  hidden>
+                <div>
+                  <input type="text" placeholder="Search....." style="height:40px; width: 95%;" id="search-sku">
+                  <div id="skus" style="max-height: 100px; overflow-y: scroll;">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="order-fullfilment-input   order-fullfilment-flex-child">
+
+            <div class="order-fullfilment-input-container" id="lot-input-container">
+                <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="LOT----------" disabled id="lot-input">
+                <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+               <span hidden><i class="fa-solid fa-caret-up classPointer primaryColor"></i></span> 
+               <div class="dropdown-orderdetails-menu" id="lot-dropdown-menu" hidden>
+                <div>
+                  <input type="text" placeholder="Search....." style="height:40px; width: 95%;" id="search-lot">
+                  <div id="lot-numbers" style="max-height: 100px; overflow-y: scroll;">
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="order-fullfilment-input   order-fullfilment-flex-child quantity-section">
+            <div><input type="number" name="" min="0" id="order-quantity" class="classPointer" style="width:97%; font-size: 12px;padding:10px; height: 40px;
+                border-radius: 7px; border: 1px solid var(---primaryColor);" placeholder="Quantity"></div>
+            
+               <div>
+                <span style="font-size: 32px;" class="classPointer"><i class="fa-solid fa-square-plus primaryColor" id="add-order" ></i></span>
+            </div>
+        </div>
+     
+      
+    </div>
+  <hr>
+
+  <div class="order-details-section" hidden>
+      <table style=" box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.1); margin-bottom:20px;" id="order-details">
+          <thead>
+              <tr>
+                  <th>Description</th>
+                  <th>SKU</th>
+                  <th>LOT</th>
+                  <th>Unit price (Naira)</th>
+                  <th>Stock</th>
+                  <th>Quantity</th>
+                  <th>Back-Order-Quantity</th>
+                  <th>Total Amount</th>
+                  <th>Action</th>
+             
+              </tr>
+          </thead>
+          <tbody id="order-detail-table">
+               
+          </tbody>
+      </table>
+  </div>
+  <div class="amount-due-section">
+      <div class="note-other-charges">
+          <table>
+            <tr><td>Point received :</td><td>200 points</td></tr>
+            <tr><td> <label for="note" style="vertical-align: text-top;">Warehouse Location</label></td>
+                <td>Porthacourt Warehouse</td>
+            </tr>
+              <tr><td> <label for="note" style="vertical-align: text-top;">Note</label></td>
+                <td><textarea name="" id="note" cols="30" rows="3"></textarea></td>
+              </tr>            
+          </table>
+        <!-- <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Point received :</span> <span> </span></div>
+        <div>
+            <label for="note" style="vertical-align: text-top;">Note</label>
+            <textarea name="" id="note" cols="30" rows="5"></textarea>
+        </div> -->
+
+      </div>
+      <div class="total-amount-due">
+          <table>
+              <tr>
+                  <td>Subtotal</td>
+                  <td id="sub-total"></td>
+              </tr>
+              <tr>
+                <td>Discount allowed</td>
+                <td>0.00</td>
+            </tr>
+            <tr>
+                <td >Grandtotal</td>
+                <td id="grand_total"></td>
+            </tr>
+          </table>
+        <!-- <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Subtotal :</span> <span> 0.00</span></div>
+        <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Discount allowed :</span> <span> 0.00</span></div>
+        <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Grandtotal :</span> <span> 0.00</span></div> -->
+      </div>
+  </div>
+  <div style="text-align: center;"><button class="btn-primary btn-lg" style="width: 70%; margin: 20px 0;">Submit Order</button></div>
+    </section>
+</div>
+   </div>
+  </section>
+    <script src="jquery.js"></script>
+    <script src="data.js"></script>
+</body>
+<script>
+    //////////////////////////////General/////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    locations =[
+        "Max-HQ",
+         "Abuja",
+        "Porthacourt",
+       " Ibadan",
+     "Lagos-warehosue"
+
+    ]
+let customer_order = {
+    description:"",
+    sku:"",
+    lot:"",
+    qty:"",
+    unitPrice:"",
+    stockIn:""
+}
+
+    let sales_toggle_status=true;
+    let inv_toggle_status=true;
+    let report_toggle_status= true;
+    let toggle_dropdown_container = true;
+
+
+ $("#toggle-sales").on("click",()=>{
+       sales_toggle_status= !sales_toggle_status
+         tooggle_sales()
+     })
+     $("#toggle-inv").on("click",()=>{
+       inv_toggle_status= !inv_toggle_status
+         tooggle_inv()
+     })
+     $("#toggle-report").on("click",()=>{
+        report_toggle_status= !report_toggle_status
+         tooggle_report()
+     })
+
+     function tooggle_sales(){
+        if(sales_toggle_status){
+            $("#sales-down").hide();
+            $("#sales-left").show();
+            $("#sales-container").hide();
+            $("#menu2").removeAttr("class","active")
+        }else{
+            $("#sales-down").show();
+            $("#sales-left").hide()
+            $("#sales-container").show();
+          $("#menu2").attr("class","active")
+        }
+    }
+    function tooggle_inv(){
+        if(inv_toggle_status){
+            $("#inv-down").hide();
+            $("#inv-left").show();
+            $("#inv-container").hide();
+            $("#menu3").removeAttr("class","active")
+        }else{
+            $("#inv-down").show();
+            $("#inv-left").hide()
+            $("#inv-container").show();
+          $("#menu3").attr("class","active")
+        }
+    }
+    function tooggle_report(){
+        if(report_toggle_status){
+            $("#report-down").hide();
+            $("#report-left").show();
+            $("#report-container").hide();
+            $("#menu4").removeAttr("class","active")
+        }else{
+            $("#report-down").show();
+            $("#report-left").hide()
+            $("#report-container").show();
+          $("#menu4").attr("class","active")
+        }
+    }
+    //////////////////Create Sales////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+
+let discountAllowed = 0;
+let subTotal = 0;
+let grandTotal = 0;
+mapLot(lots);
+mapCusmerNames(customers)
+mapSku( productSku)
+mapdescription(products)
+mapLocation(locations)
+
+
+ function uploadCutomerDetails(data){
+    document.getElementById("customer-name").innerHTML= data[0].name
+      $("#customer-email").text(data[0].email);
+      $("#customer-phone").text(data[0].phoneNumber);
+      $("#customer-type").text(data[0].customerType);
+      $("#customer-point").text(data[0].AccumulatedPoint);
+
+ }
+
+
+ $("#close-customer-form").on("click",()=>{
+    $("#modal-container").hide();
+    $(".create-customer-modal-wrapper").hide();
+ })
+
+$("#create-new-user").on("click",()=>{
+   $(".modal-container").show();
+    $(".create-customer-modal-wrapper").slideDown("slow");
+
+  
+
+})
+function emptyInput(){
+    customer_order={};
+    $("#lot-input").val("")
+    $("#description-input").val("")
+    $("#sku-input").val("")
+    $("#order-quantity").val("")
+    $(".alert-error").hide()
+
+}
+
+  function checkIncompleteInput(){
+      let data = [
+          customer_order.description,
+          customer_order.lot,
+          customer_order.sku,
+          customer_order.qty
+        ];
+     return data.some((dat)=>{
+       return  dat=="";
+     })
+
+}
+
+
+ $("#add-order").on("click",()=>{
+   if(!checkIncompleteInput()){
+    $(".alert-error").hide()
+     let totalAmount = parseFloat(customer_order.qty)*parseFloat(customer_order.unitPrice);
+     subTotal += totalAmount;
+     $("#sub-total").text(subTotal+".00")
+     $("#grand_total").text(subTotal+discountAllowed+".00")
+   
+         let tr = document.createElement("tr")
+         let td1 = document.createElement("td")
+         let td2 = document.createElement("td")
+         let td3 = document.createElement("td")
+         let td4 = document.createElement("td")
+         let td5 = document.createElement("td")
+         let td6 = document.createElement("td")
+         let td7 = document.createElement("td")
+         let td8 = document.createElement("td")
+         let td9 = document.createElement("td")
+     
+        td1.textContent = customer_order.description;
+        tr.append(td1)
+        console.log(tr)
+        td2.textContent = customer_order.sku
+        tr.append(td2);
+        td3.textContent = customer_order.lot;
+        tr.append(td3);
+        td4.textContent = customer_order.unitPrice;
+        tr.append(td4);
+        td5.textContent = customer_order.stockIn;
+        tr.append(td5);
+        td6.textContent= customer_order.qty;
+        tr.append(td6);
+        let backOrder = 0;
+        if( parseInt(customer_order.stockIn) - parseInt(customer_order.qty) < 0){
+           backOrder = Math.abs(parseInt(customer_order.stockIn) - parseInt(customer_order.qty) )
+        };
+        td7.textContent = backOrder;
+        tr.append(td7);
+        td8.textContent = totalAmount;
+    tr.append(td8);
+
+         $("#order-detail-table").append(tr);
+         $(".order-details-section").show();
+        emptyInput();
+    }
+    else{
+        $(".alert-error").fadeIn()
+    }
+ })
+
+
+
+
+ $("#lot-input-container").on("mouseleave",()=>{
+    mapLot(lots);
+    $("#search-lot").val()
+})
+$("#sku-input-container").on("mouseleave",()=>{
+
+    mapSku(productSku)
+    $("#search-sku").val("")
+})
+
+
+$("#description-input-container").on("mouseleave",()=>{
+    mapdescription(products);
+    $("#search-description").val("")
+})
+
+
+
+
+ $("#sorted-customer-name").on("click",()=>{
+    toggle_dropdown_container=!toggle_dropdown_container
+    if(toggle_dropdown_container) $(".dropdown-container").hide()
+    else $(".dropdown-container").show()
+ })
+
+
+
+
+$("#order-quantity").on("change",(e)=>{
+customer_order.qty = e.target.value
+})
+
+$("#search-description").on("keypress",(e)=>{
+    data = products.filter((product)=>{
+        return  (product["description"].toLowerCase()).includes(e.target.value.toLowerCase())
+    })
+   
+    mapdescription(data)
+
+ })
+
+ $("#search-lot").on("keypress",(e)=>{
+    data = lots.filter((product)=>{
+        return  product["lot"].includes(e.target.value)
+    })
+    mapLot(data)
+
+ })
+
+ $("#search-sku").on("keypress",(e)=>{
+    data = productSku.filter((product)=>{
+        return  (product.toLowerCase()).includes(e.target.value.toLowerCase())
+    })
+    mapSku(data)
+
+ })
+  
+ $("#search-input").on("keypress",(e)=>{
+    data = customers.filter((customer)=>{
+        return  customer["name"].includes(e.target.value)
+    })
+    mapCusmerNames(data)
+
+ })
+
+
+
+ function mapLocation(data){
+    $("#warehouses").empty();
+     data.map((location)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= location
+         p.onclick =()=>{
+            $("#warehouse-input").val(p.innerHTML)
+
+         }
+         return  $("#warehouses").append(p)
+
+     })
+ }
+function mapdescription(data){
+    $("#descriptions").empty();
+     data.map((product)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= product.description
+         p.onclick =()=>{
+            $("#description-input").val(p.innerHTML)
+            const product_description= data.filter((prod_descript)=>{
+                return prod_descript.description.includes(p.innerHTML)
+            })
+           customer_order.description=product_description[0].description;
+           customer_order.unitPrice=product_description[0].unitPrice;
+           console.log(customer_order)
+         }
+         return  $("#descriptions").append(p)
+
+     })
+
+  }
+
+  function mapSku(data){
+    $("#skus").empty();
+     data.map((product)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= product
+         p.onclick =()=>{
+            $("#sku-input").val(p.innerHTML)
+            customer_order.sku=p.innerHTML;
+            console.log(customer_order)
+         }
+         return  $("#skus").append(p)
+
+     })
+
+  }
+
+ function mapLot(data){
+    $("#lot-numbers").empty();
+     data.map((product)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= product.lot
+         p.onclick =()=>{
+            $("#lot-input").val(p.innerHTML)
+            const product_lot = data.filter((prod_lot)=>{
+                return prod_lot.lot.includes(p.innerHTML)
+            })
+           customer_order.lot= product_lot[0].lot;
+           customer_order.stockIn=product_lot[0].qty;
+         }
+         return  $("#lot-numbers").append(p)
+
+     })
+ }
+
+ function mapCusmerNames(data){
+    $("#customer-names").empty();
+     data.map((customer)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= customer.name
+         p.onclick =()=>{
+            $("#sorted-customer-name").text(p.innerHTML)
+           dataFilter= data.filter((filterCustomer)=>{
+               return filterCustomer.name === p.innerHTML
+           })
+            uploadCutomerDetails(dataFilter)
+            $(".dropdown-container").hide()
+            $(".hide-customer-details").show()
+         }
+         return $("#customer-names").append(p)
+
+     })
+ }
+
+
+</script>
+</html>

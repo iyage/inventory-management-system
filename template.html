@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboasrd!!!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href= "/fonts/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+</head>
+<body>
+  <section class="page-container">
+   <div class="side-bar">
+       <div class="side-bar-header">
+        <div class="side-bar-header-img-container">
+            <img src="assests/images/max-logo.png" alt="">
+        </div>
+       </div>
+       <div class="side-bar-container">
+        <ul>
+            <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li>
+            <li  id="menu2">  <span class="classPointer side-bar-heading" id="toggle-sales">
+                
+                <div><span>  <i class="fa-solid fa-basket-shopping"></i></span>  <span>Sales</span> </div> 
+                <!-- <i class="fa-solid fa-cart-shopping"></i> -->
+                <div>
+                  
+                    <span id="sales-left">
+                        <i class="fa-solid fa-angle-left"></i>
+                    </span>
+                    <span id="sales-down">  <i class="fa-solid fa-angle-down"></i></span>
+                   
+                </div>
+            </span> 
+        </li>
+
+                <ul id="sales-container"hidden>
+                    <li>Fulfil Order</li>
+                <li>My sales Lists</li>
+                <li>All Sales list</li>
+                <li>Sales Report</li>
+            </ul>
+
+            <li id="menu3">
+                <span class="classPointer side-bar-heading" id="toggle-inv">
+                
+                    <div><span><i class="fa-solid fa-file-invoice"></i></span>  <span>Manage Inventory</span> </div> 
+                    <div>
+                      
+                        <span id="inv-left">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </span>
+                        <span id="inv-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                       
+                    </div>
+                </span> 
+            </li>
+                
+                <ul id="inv-container" >
+                <li>Create new product</li>
+                <li>second item</li>
+            </ul>
+
+            <li id="menu4">
+                Manage Inventory
+            </li>
+                <ul>
+                    <li></li>
+                    <li></li>
+                </ul>
+
+            
+            <li></li>
+        </ul>
+
+       </div>
+
+   </div>
+   <div class="main-body">
+    <nav class="nav-bar">
+        <div class="nav-menu">
+            <div class="left-menu nav-menu-flex-child"><i class="fa-solid fa-bars classPointer" id="menu-bar"></i></div>
+            <div class="center-menu nav-menu-flex-child">
+                <div class="logo-container">
+                    <!-- <img src="assests/images/max-logo.png" alt=""> -->
+                
+                </div>
+            </div>
+            <div class="right-menu nav-menu-flex-child">
+                <div class="dropdown">
+                    <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
+                    <div class="dropdown-content">
+                      <a href="#"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
+                    </div>
+                  </div> 
+
+            </div>
+        </div>
+    </nav>
+    <section class="main-body-container">
+
+    </section>
+   </div>
+  </section>
+    <script src="jquery.js"></script>
+</body>
+<script>
+    let sales_toggle_status=true;
+    let inv_toggle_status=true;
+
+     $("#toggle-sales").on("click",()=>{
+       sales_toggle_status= !sales_toggle_status
+         tooggle_sales()
+     })
+     $("#toggle-inv").on("click",()=>{
+       inv_toggle_status= !inv_toggle_status
+         tooggle_inv()
+     })
+
+     function tooggle_sales(){
+        if(sales_toggle_status){
+            $("#sales-down").hide();
+            $("#sales-left").show();
+            $("#sales-container").hide();
+            $("#menu2").removeAttr("class","active")
+        }else{
+            $("#sales-down").show();
+            $("#sales-left").hide()
+            $("#sales-container").show();
+          $("#menu2").attr("class","active")
+        }
+    }
+    function tooggle_inv(){
+        if(inv_toggle_status){
+            $("#inv-down").hide();
+            $("#inv-left").show();
+            $("#inv-container").hide();
+            $("#menu3").removeAttr("class","active")
+        }else{
+            $("#inv-down").show();
+            $("#inv-left").hide()
+            $("#inv-container").show();
+          $("#menu3").attr("class","active")
+        }
+    }
+
+
+
+
+
+
+
+</script>
+</html>
