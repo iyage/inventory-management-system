@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboasrd!!!</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href= "/fonts/css/all.css" />
+    <link rel="stylesheet" href= "css/all.css" />
   <link rel="stylesheet" href="dashboard.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0 "></script>
 </head>
+<style>
+</style>
 <body>
     <!-- page container start here -->
   <section class="page-container">
@@ -40,9 +42,6 @@
          </li>
  
                  <ul id="sales-container"hidden>
-                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Raise Order</span> </div> </li>
-                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Full Order</span> </div> </li>
-                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Sales Lists</span> </div> </li>
                      <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>All Sales list</span> </div> </li>
              </ul>
  
@@ -62,9 +61,10 @@
              </li>
                  
                  <ul id="inv-container" >
-                 <li> <div><span><i class="fa-solid fa-truck"></i></span>  <span>Transfer Inventory</span> </div> </li>
+                 <!-- <li> <div><span><i class="fa-solid fa-truck"></i></span>  <span>Transfer Inventory</span> </div> </li>
                  <li> <div><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </div> </li>
-                 <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li> -->
+                 <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Approve Stock Count</span> </div> </li>
                
              </ul>
  
@@ -111,7 +111,7 @@
                 <div class="dropdown">
                     <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
                     <div class="dropdown-content">
-                      <a href="#"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="index.html"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
                       <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
                     </div>
                   </div> 
@@ -154,6 +154,10 @@
                         <div class="performance-card-section" style="background-color:rgb(221,75,57);">
                             <i class="fa-solid fa-arrows-rotate performance-card-icon"></i>
                         </div>
+                        <div class="card-content">
+                            <h5>Total Back-Orders</h5>
+                            <h1 class="performace-card-data">50</h1>
+                        </div>
                          </div>
 
                          <!-- <div class="performance-card">
@@ -188,10 +192,53 @@
         </div>
         <!-- display performance end here -->
         <div class="section-display-growth">
-            <div class="growth-card" style=" background-color: rgb(221,75,57);;"></div>
-<div class="growth-card" style="background-color: rgb(166,18,166);"></div>
+            <div class="growth-card" style=" background-color:rgba(94, 184, 201,0.8);
+             position: relative;
+             color: rgba(0, 0, 0,0.6);">
+              <h4 style="text-align:center;
+              font-size: 18px;padding:5px 20px;
+              ">Total Recieved Inventory for Last Month From USA</h4>
+                
+                <h1 class="performace-card-data" style="text-align: center">20</h1>
+              
+                <i class="fa-solid fa-truck-arrow-right" style="font-size: 100px;color:grey;
+                   z-index: -1;
+                   position: absolute;
+                   right: 15px;
+                   top:30px;
+                    "></i>
+                   
+             
+             
+                
+            </div>
+<div class="growth-card" style="background-color:rgba(94, 184, 201,0.8);color: rgba(0, 0, 0,0.6);position: relative;">
+    <h4 style="text-align:center;
+    font-size: 18px;padding:5px 20px;
+   ">Sales from each warehouse in <del style=" text-decoration-style:double; text-decoration-line:line-through ;">N</del></h4>
 
-<div class="growth-card" style="background-color:rgb(5,142,242)"></div>
+    <table style="margin-top:5px">
+        <tr class="branch-sales">
+            <td><span class="growth-card-child">Lagos : </span> </td><td><span class="growth-card-child">1,000,000</span></td>
+
+        </tr>
+        <tr class="branch-sales">
+            <td><span class="growth-card-child">Porthacourt : </span></td><td><span class="growth-card-child">2,000,000</span></td>
+        </tr>
+        <tr class="branch-sales">
+            <td><span class="growth-card-child">Abuja : </span></td><td><span class="growth-card-child">3,000,000</span></td>
+        </tr>
+    </table>
+    <i class="fa-solid fa-hand-holding-dollar performance-card-icon"
+    style="font-size: 100px;color:grey;
+         z-index: -1;
+         position: absolute;
+         right: 15px;
+         top:30px"
+    ></i>
+      </div>
+
+<!-- <div class="growth-card" style="background-color:rgb(5,142,242)"></div> -->
 </div>
 <!-- dispaly growth end here -->
         
@@ -345,7 +392,7 @@ let salesData = [
     },
     {
         prod:"N-Fuze Bro Single V2 EN US",
-        sales:[22, 10, 35, 40, 17]
+        sales:[22, 20, 35, 40, 17]
     },
     {
         prod:"ATP Bro Single V2 EN US",

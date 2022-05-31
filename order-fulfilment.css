@@ -91,3 +91,44 @@ color: var(---secondaryColor);
    white-space: nowrap;
 
 }
+.modal-wrapper{
+   margin: auto;
+    width: min(70%,70.2vw);
+    margin-top: 10px;
+    background-color: white;
+    position: relative;
+    height: 95vh;
+}
+.fulfil-order-heading{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+.fulfil-order-customer-detail,.warehouse-location{
+    text-align: start;
+    padding: 10px;
+}
+.fulfil-order-customer-order-details{
+   display: flex;
+    padding: 10px; 
+    justify-content: center;
+}
+
+
+.customer-details{
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+.customer-details-flex-child{
+    flex:45%;
+    flex-grow: 0;
+    margin: 10px 0;
+}
+
+.customer-details-heading{
+    font-weight: 700;
+    margin-right: 15px;
+    line-height: 10px;
+}

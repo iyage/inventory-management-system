@@ -4,24 +4,160 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboasrd!!!</title>
+    <title>Fullfill Order!!!</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href= "/fonts/css/all.css" />
+    <link rel="stylesheet" href= "css/all.css" />
    <link rel="stylesheet" href="order-fulfilment.css">
    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
    <link rel="stylesheet" href=" https://printjs-4de6.kxcdn.com/print.min.css">
-   <style>
-       table,td{
-        border: 1px solid #5EB8C9;
-        border-spacing:0;
-        border-collapse: collapse;
-       }
-       th{
-           border: 1px solid white;
-       }
-   </style>
+   <script>
+    //prefixes of implementation that we want to test
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || 
+window.webkitIndexedDB || window.msIndexedDB;
+
+//prefixes of window.IDB objects
+window.IDBTransaction = window.IDBTransaction || 
+window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || 
+window.msIDBKeyRange
+
+if (!window.indexedDB) {
+window.alert("Your browser doesn't support a stable version of IndexedDB.")
+}
+
+
+
+var db;
+var request = window.indexedDB.open("max-database", 1);
+
+request.onerror = function(event) {
+console.log("error: ");
+};
+
+request.onsuccess = function(event) {
+db = request.result;
+console.log("success: "+ db);
+};
+
+
+let data = [];
+async function getOrder(orderNumber,customerId){
+    console.log(customerId)
+    let store1 = db.transaction("order").objectStore("order");
+    let customeInfo = db.transaction("customer").objectStore("customer");
+    let request  = store1.get(orderNumber)
+    let req = customeInfo.get(customerId)
+    request.onerror = function(event) {
+      alert("Unable to retrieve daa from database!");
+   };
+//    function fetchedCustomer(){
+//     let resp = customeInfo.get(request.result.customerId)
+//          resp.onsuccess =function(e){
+//              if(resp.result)  console.log(resp.result)
+//          }
+//    }
+
+req.onsuccess = function(event) {
+          
+      if(req.result){
+  
+     console.log(req.result.name);
+}
+
+}
+   request.onsuccess = function(event) {
+      
+          
+        if(request.result){
+    
+       console.log(request.result);
+}
+
+    
+    }
+}
+
+function warehouseOrders() {
+let newstore = db.transaction("order").objectStore("order");
+var index =newstore.index("warehouse");
+var singleKeyRange = IDBKeyRange.only("Max-HQ");
+
+index.openCursor(singleKeyRange, "prev").onsuccess = function(event) {
+var cursor = event.target.result;
+
+if (cursor) {
+data.push(cursor.value)
+
+cursor.continue();
+}
+
+else {
+
+}
+};
+}
+setTimeout(()=>{
+    warehouseOrders();
+setTimeout(()=>{
+    mapOrder(data)
+},500)
+},500)
+</script>
 </head>
 <body>
+    <div class="modal-container" id="modal-container" hidden >
+          <div class="modal-wrapper" id="fullfil-order-form" hidden>
+                 <div class="modal-header"><span>Fullfil-Order</span></div>
+                 <div style=" overflow-y: auto; height: 85%;">
+                    <div class="fulfil-order-heading"> <div><span>Order-Number : </span><span>346096</span></div> 
+                    <div>
+
+            <span>Order-Status : </span><span id="order_status"></span>
+                    </div>  
+                    <div><button class="btn-sm btn-secondary-light" id="print-invoice">Print-Invoice</button> <button class="btn-sm  btn-secondary-dark" id="fullfill-order">Fuilfil Order</button></div>
+                     </div>  
+                    <div class="warehouse-location"><span>Warehouse Location : </span><span>Lagos</span></div>
+                    <div class="fulfil-order-customer-detail">
+                        <div class="customer-details">
+                            <div class="customer-name customer-details-flex-child"><span class="customer-details-heading">Customer Name :</span> <span id="customer-name"></span> </div>
+                            <div class="customer-email customer-details-flex-child"><span class="customer-details-heading">Customer Email :</span> <span id="customer-email"></span></div>
+                            <div class="customer-phone-number customer-details-flex-child"><span class="customer-details-heading">Customer Phone Number :</span> <span id="customer-phone"></span> </div>
+                            <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Customer Type :</span> <span id="customer-type"></span></div>
+                            <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Point Accumulated :</span> <span id="customer-point"></span></div>
+                         </div>
+
+                    </div>
+                    <div class="fulfil-order-customer-order-details">
+                        <table style="width: 80%;">
+                            <thead>
+                                <th>Description</th>
+                                <th>Sku</th>
+                                <th>LOT</th>
+                                <th>Quantity</th>
+                           
+                            </thead>
+                            <tbody id="order_details">
+                       
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div style="text-align: end; padding: 0 110px;">
+                        <div style="display: flex;justify-content: end; margin-bottom: 30px;"><table><tr>
+                            <td>subTotal</td><td>0.000</td>
+                        </tr>
+                    
+                    <tr>       <td>Discount Allowed</td><td>0.000</td>
+                        </tr>
+                        <tr>
+                            <td>grandTotal</td><td>0.000</td>
+                    </table></div>
+                    </div> -->
+
+                 </div>
+                
+                 <div class="modal-footer"> <button class="btn-sm btn-secondary-light" id="close-customer-form">Close</button></div>
+     </div>
+    </div>
   <section class="page-container">
       <!-- side start here -->
       <div class="side-bar">
@@ -32,8 +168,8 @@
         </div>
         <div class="side-bar-container">
          <ul>
-             <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li>
-             <li  id="menu2">  <span class="classPointer side-bar-heading" id="toggle-sales">
+             <!-- <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li> -->
+             <!-- <li  id="menu2">  <span class="classPointer side-bar-heading" id="toggle-sales">
                  
                  <div><span>  <i class="fa-solid fa-basket-shopping"></i></span>  <span>Sales</span> </div> 
                  <div>
@@ -46,13 +182,12 @@
                  </div>
              </span> 
          </li>
- 
                  <ul id="sales-container"hidden>
                      <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Raise Order</span> </div> </li>
                      <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Full Order</span> </div> </li>
                      <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Sales Lists</span> </div> </li>
                      <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>All Sales list</span> </div> </li>
-             </ul>
+             </ul> -->
  
              <li id="menu3">
                  <span class="classPointer side-bar-heading" id="toggle-inv">
@@ -70,13 +205,13 @@
              </li>
                  
                  <ul id="inv-container" >
-                 <li> <div><span><i class="fa-solid fa-truck"></i></span>  <span>Transfer Inventory</span> </div> </li>
-                 <li> <div><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </div> </li>
+                 <li> <div><a href="transfer-inventory.html"><span><i class="fa-solid fa-truck"></i></span><span></span>Transfer Inventory</span> </a> </div> </li>
+                 <li> <div><a href="receive-inventory.html"><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </a><div> </li>
                  <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li>
                
              </ul>
  
-             <li id="menu4">
+             <!-- <li id="menu4">
  
                  <span class="classPointer side-bar-heading" id="toggle-report">
                  
@@ -98,13 +233,14 @@
                  <li> <div><span><i class="fa-solid fa-money-bill-trend-up"></i></span>  <span>Customer purchase Report</span> </div> </li>
                  <li> <div><span><i class="fa-solid fa-arrows-rotate"></i></span>  <span>Back Orders</span> </div> </li>
                  <li> <div><span><i class="fa-solid fa-chart-bar"></i></span>  <span>Stock report</span> </div> </li>
-         </ul>
+         </ul> -->
          </ul>
  
         </div>
  
     </div>
     <!-- sidebar end here -->
+
    <div class="main-body">
     <nav class="nav-bar">
         <div class="nav-menu">
@@ -119,7 +255,7 @@
                 <div class="dropdown">
                     <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
                     <div class="dropdown-content">
-                      <a href="#"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="index.html"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
                       <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
                     </div>
                   </div> 
@@ -143,7 +279,7 @@
              </div>
              <div class="status-filter-section">
                 <div class="search-order-number">
-                    <div class="input-order-number"> <input type="text" placeholder="search with order number"></div>
+                    <div class="input-order-number"> <input type="text" placeholder="search with order number" id="order-number"></div>
                     <div class="input-order-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
                    
                 </div>
@@ -382,6 +518,83 @@
     <script src="data.js"></script>
 </body>
 <script>
+
+   let order;
+   function fullfillOrder(){
+
+   }
+   $("#fullfill-order").on("click",()=>{
+    $("#fullfill-order").hide()
+    let store = db.transaction("order","readwrite").objectStore("order");
+order.orderStatus = "Close"
+   store.put(order)
+       console.log(order)
+       window.location.reload()
+   })
+async function getOrder(orderNumber,customerId){
+    let store1 = db.transaction("order","readwrite").objectStore("order");
+    let customeInfo = db.transaction("customer").objectStore("customer");
+    let request  = store1.get(orderNumber)
+  
+    let req = customeInfo.get(customerId)
+    request.onerror = function(event) {
+      alert("Unable to retrieve daa from database!");
+   };
+
+
+
+
+
+
+req.onsuccess = function(event) {
+          
+      if(req.result){
+          $("#customer-name").text(req.result.name)
+          $("#customer-email").text(req.result.email)
+          $("#customer-phone").text(req.result.phoneNumber)
+          $("#customer-type").text(req.result.customerType)
+          $("#customer-point").text(req.result.AccumulatedPoint)
+       
+}
+
+}
+
+
+
+   request.onsuccess = function(event) {
+    
+      
+          
+        if(request.result){
+             order = request.result
+            $("#order_status").text(request.result.orderStatus)
+            if(request.result.orderStatus == "Close"){
+                $("#fullfill-order").hide()
+                $("#print-invoice").show()
+            }
+            else{
+                $("#print-invoice").hide()
+            }
+            request.result.prod.forEach(element => {
+                $("#order_details").append(
+             `<tr> 
+                <td>${element.description}</td>
+                <td>${element.sku}</td>
+                <td>${element.lot}</td>
+                <td>${element.qty}</td>
+                
+                
+                <tr>`
+          )
+                
+            });
+       
+}
+
+    
+    }
+}
+
     let filterData = customers;
     
    
@@ -402,20 +615,13 @@
     $("#refresh-search-container").show();
   
    })
-
-
    $("#refresh_search").on("click",()=>{
-      let data = customers;
-       $("#refresh-search-container").hide()
-       mapOrder(data)
-       filterData=customers
+   location.reload()
    })
-   mapOrder(customers);
 
     function mapOrder(customers){
         $("#orders").empty()
-        customers.forEach(element => {
-           element["order"].map((order)=>{
+          customers.map((order)=>{
              const td1 = document.createElement("td")
              const td2 = document.createElement("td")
              const td3 = document.createElement("td")
@@ -471,13 +677,28 @@
         div.append(p1)
         div.append(p2)
              const action_btns = document.createElement("div")
-             action_btns.setAttribute("class","action-buttons btn-secondary btn-sm")
+             action_btns.setAttribute("class","action-buttons btn-success btn-sm")
              action_btns.append(span1)
              action_btns.append(span2)
              action_btns.append(div)
              td6.append(action_btns);
              tr.append(td6)
+             if(order.orderStatus=="Close"){
+                $(p1).hide(); 
+             }
              $("#orders").append(tr)
+             $(p1).on("click",()=>{
+
+             })
+             $(p1).on("click",()=>{
+                 $("#modal-container").show();
+                 setTimeout(()=>{
+                  $("#fullfil-order-form").slideDown("slow");
+                 },300)
+
+                 getOrder(order.orderNumber,order.customerId)
+                 
+             })
              $(p2).on("click",()=>{
 
                printJS({
@@ -492,15 +713,37 @@
            $(p2).hide()};
 
            })
-       });
-    }
   
- $("#date-raised").on("change",()=>{
+    }
+
+    $("#print-invoice").on("click",()=>{
+        printJS({
+                   printable:"invoice",
+                   type:"html",
+                   honorColor: true,
+                   targetStyles:["*"]
+
+               })
+
+    })
+
+    
+  
+    $("#close-customer-form").on("click",()=>{
+        $("#modal-container").hide();
+              
+     $("#fullfil-order-form").hide();
+             
+    })
+
+
+ $("#date-raised").on("change",(e)=>{
     let newCustomerData
     const dataInput=[];
     filterData.forEach(element => {
      newCustomerData=  element["order"].filter((order)=>{
-        return order.date === $("#date-raised").val()
+        return order.date === e.target.value
+        // $("#date-raised").val()
     }) 
     console.log(newCustomerData)
    if(newCustomerData.length!=0){
@@ -509,6 +752,27 @@
    }
     });
     console.log(dataInput)
+    mapOrder(dataInput)
+    filterData = dataInput;
+    $("#refresh-search-container").show();
+ })
+
+
+
+ $("#order-number").on("keypress",(e)=>{
+    let newCustomerData={}
+    const dataInput=[];
+    filterData.forEach(element => {
+     newCustomerData=  element["order"].filter((order)=>{
+
+        return (order["orderNumber"].toString()).includes(e.target.value)
+    }) 
+   if(newCustomerData.length!=0){
+       console.log(newCustomerData)
+     element["order"]=newCustomerData;
+     dataInput.push(element)
+   }
+    });
     mapOrder(dataInput)
     filterData = dataInput;
     $("#refresh-search-container").show();

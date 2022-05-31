@@ -7,15 +7,84 @@
     <title>Sales!!!</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="create-sales.css">
-    <link rel="stylesheet" href= "/fonts/css/all.css" />
+    <link rel="stylesheet" href= "css/all.css" />
+    <script>
+        //prefixes of implementation that we want to test
+        window.indexedDB = window.indexedDB || window.mozIndexedDB || 
+window.webkitIndexedDB || window.msIndexedDB;
+
+//prefixes of window.IDB objects
+window.IDBTransaction = window.IDBTransaction || 
+window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || 
+window.msIDBKeyRange
+
+if (!window.indexedDB) {
+   window.alert("Your browser doesn't support a stable version of IndexedDB.")
+}
+
+
+
+var db;
+var request = window.indexedDB.open("max-database", 1);
+
+request.onerror = function(event) {
+   console.log("error: ");
+};
+
+request.onsuccess = function(event) {
+   db = request.result;
+   console.log("success: "+ db);
+};
+
+ let customerArray=[];
+ let prodArray=[];
+ let orderArray = [];
+  function readAll() {
+            var objectStore = db.transaction("customer").objectStore("customer");
+            
+            objectStore.openCursor().onsuccess = function(event) {
+               var cursor = event.target.result;
+               
+               if (cursor) {
+                  customerArray.push(cursor.value)
+                  cursor.continue();
+               } else {
+              
+               }
+         
+            };
+     
+      
+         }
+
+
+
+         function fetctPro(){
+            var objectStore = db.transaction("products").objectStore("products");
+            objectStore.openCursor().onsuccess = function(event) {
+               var cursor = event.target.result;
+               
+               if (cursor) {
+                  prodArray.push(cursor.value)
+                  cursor.continue();
+               } else {
+              
+               }
+         
+            };
+
+         }
+
+</script>
 </head>
 <body>
+   <input type="hidden" name="" id="salesAmbasador" value="Bunmi Banwo">
     <div class="modal-container" id="modal-container" hidden>
         <div class="create-customer-modal">
          <div class="create-customer-modal-wrapper">
              <div class="modal-header"><span>New User</span></div>
              <form action="" style="margin: 20px;">
-
 
                <table id="customer-detail-form">
               <tr><td> <label for="first-name">Customer First Name</label></td><td>   <input type="text" id="first-name"></td></tr>
@@ -29,7 +98,7 @@
                </table>
 
              </form>
-             <div class="modal-footer"> <button class="btn-sm btn-primary" id="close-customer-form">Close</button> <button class="btn-sm  btn-secondary">Save</button></div>
+             <div class="modal-footer"> <button class="btn-sm btn-secondary-light" id="close-customer-form">Close</button> <button class="btn-sm  btn-secondary-dark">Save</button></div>
              </div>
         </div>   
      </div>
@@ -42,7 +111,7 @@
        </div>
        <div class="side-bar-container">
         <ul>
-            <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li>
+            <!-- <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li> -->
             <li  id="menu2">  <span class="classPointer side-bar-heading" id="toggle-sales">
                 
                 <div><span>  <i class="fa-solid fa-basket-shopping"></i></span>  <span>Sales</span> </div> 
@@ -60,12 +129,12 @@
 
                 <ul id="sales-container"hidden>
                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Raise Order</span> </div> </li>
-                    <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Full Order</span> </div> </li>
-                    <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Sales Lists</span> </div> </li>
-                    <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>All Sales list</span> </div> </li>
+                    <!-- <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Full Order</span> </div> </li> -->
+                    <li> <div><a href="salesList.html"> <span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Sales Lists</span></a> </div> </li>
+                    <!-- <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>All Sales list</span> </div> </li> -->
             </ul>
 
-            <li id="menu3">
+            <!-- <li id="menu3">
                 <span class="classPointer side-bar-heading" id="toggle-inv">
                 
                     <div><span><i class="fa-solid fa-file-invoice"></i></span>  <span>Manage Inventory</span> </div> 
@@ -85,9 +154,9 @@
                 <li> <div><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </div> </li>
                 <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li>
               
-            </ul>
+            </ul> -->
             <!-- <i class="fa-solid fa-people-carry-box"></i> -->
-
+<!-- 
             <li id="menu4">
 
                 <span class="classPointer side-bar-heading" id="toggle-report">
@@ -110,7 +179,7 @@
                 <li> <div><span><i class="fa-solid fa-money-bill-trend-up"></i></span>  <span>Customer purchase Report</span> </div> </li>
                 <li> <div><span><i class="fa-solid fa-arrows-rotate"></i></span>  <span>Back Orders</span> </div> </li>
                 <li> <div><span><i class="fa-solid fa-chart-bar"></i></span>  <span>Stock report</span> </div> </li>
-        </ul>
+        </ul> -->
         </ul>
 
        </div>
@@ -130,7 +199,7 @@
                 <div class="dropdown">
                     <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
                     <div class="dropdown-content">
-                      <a href="#"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="index.html"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
                       <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
                     </div>
                   </div> 
@@ -138,9 +207,18 @@
             </div>
         </div>
     </nav>
+  
     <div style="display: flex; justify-content: center;">
     <section class="main-body-container">
+        <p hidden id="order-fulfiled" style="color:red;padding:0 10px;"></p>
         <div class="search-customer-details">
+          
+            <div class="search-customer-details-flex-item">
+                <div class="order-fullfilment-input-container" >
+                    <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:0 2px; border: 0; height: 95%;" placeholder="Order Number------"id="order-number">
+                </div>
+
+            </div>
             <div class="search-customer-name  search-customer-details-flex-item">
                 <div class="input-container">
                     <span class="classPointer" style="width:100%; font-size: 18px;padding:2px; border: 0;"id="sorted-customer-name">search </span>
@@ -158,38 +236,62 @@
                     <i class="fa-solid fa-user-plus classPointer primaryColor" id="create-new-user"></i>
                 </div>
             </div>
+            <div class="search-customer-details-flex-item">
+                <div class="order-fullfilment-input " id="warehouse-input-container">
+                    <div class="order-fullfilment-input-container" >
+                        <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="Warehouse Location----------" disabled id="warehouse-input">
+                        <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+                
+                        <div class="warehouse-dropdown-container dropdown-orderdetails-menu" hidden  id="warehouse-dropdown-menu" >
+                            <div>
+                              <div id="warehouses" style="max-height: 100px; overflow-y: scroll;">
+                              </div>
+                            </div>
+                          </div>
+            
+                    </div>
+                </div>
+            </div>
+
+
+
+
             
         </div>
+        
         <div class="hide-customer-details" hidden>
-    <hr>
     <div class="customer-details">
        <div class="customer-name customer-details-flex-child"><span class="customer-details-heading">Customer Name :</span> <span id="customer-name"></span> </div>
        <div class="customer-email customer-details-flex-child"><span class="customer-details-heading">Customer Email :</span> <span id="customer-email"></span></div>
        <div class="customer-phone-number customer-details-flex-child"><span class="customer-details-heading">Customer Phone Number :</span> <span id="customer-phone"></span> </div>
        <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Customer Type :</span> <span id="customer-type"></span></div>
-       <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Point Accumulated :</span> <span id="customer-point"></span></div>
+       <input type="hidden" name="" id="customer_id">
     </div>
 </div>
+<br>
+<!-- <div style="padding: 0 100px;">
+    <div class="order-fullfilment-input " id="warehouse-input-container">
+        <div class="order-fullfilment-input-container" >
+            <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="Warehouse Location----------" disabled id="warehouse-input">
+            <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+    
+            <div class="warehouse-dropdown-container dropdown-orderdetails-menu" hidden  id="warehouse-dropdown-menu" >
+                <div>
+                  <div id="warehouses" style="max-height: 100px; overflow-y: scroll;">
+                  </div>
+                </div>
+              </div>
+
+        </div>
+    </div>
+</div> -->
     <hr>
     <div class="alert-error">
       <h4>please insert missing value</h4>
     </div>
     <div class="order-fullfilment">
 
-        <div class="order-fullfilment-input   order-fullfilment-flex-child" id="warehouse-input-container">
-            <div class="order-fullfilment-input-container">
-                <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="Warehouse Location----------" disabled id="warehouse-input">
-                <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
-        
-                <div class="warehouse-dropdown-container dropdown-orderdetails-menu" hidden  id="warehouse-dropdown-menu" >
-                    <div>
-                      <div id="warehouses" style="max-height: 100px; overflow-y: scroll;">
-                      </div>
-                    </div>
-                  </div>
 
-            </div>
-        </div>
 
         <div class="order-fullfilment-input  order-fullfilment-flex-child">
            
@@ -211,23 +313,23 @@
 
 
 
-        <div class="order-fullfilment-input  order-fullfilment-flex-child">
+        <div class="order-fullfilment-input  order-fullfilment-flex-child" style="flex:20%; flex-grow: 0;">
 
 
             <div class="order-fullfilment-input-container " id="sku-input-container">
-                <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="SKU----------" disabled id="sku-input">
-                <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
-               <span hidden><i class="fa-solid fa-caret-up classPointer primaryColor"></i></span> 
-               <div class="warehouse-dropdown-container dropdown-orderdetails-menu"  id="sku-dropdown-menu"  hidden>
+                <input type="text"  style="width:97%; font-size: 12px;padding:2px; border: 0;" id="sku-input" disabled>
+                <!-- <i class="fa-solid fa-caret-down classPointer primaryColor"></i> -->
+               <!-- <span hidden><i class="fa-solid fa-caret-up classPointer primaryColor"></i></span>  -->
+               <!-- <div class="warehouse-dropdown-container dropdown-orderdetails-menu"  id="sku-dropdown-menu"  hidden>
                 <div>
                   <input type="text" placeholder="Search....." style="height:40px; width: 95%;" id="search-sku">
                   <div id="skus" style="max-height: 100px; overflow-y: scroll;">
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
         </div>
-        <div class="order-fullfilment-input   order-fullfilment-flex-child">
+        <div class="order-fullfilment-input   order-fullfilment-flex-child quantity-section" >
 
             <div class="order-fullfilment-input-container" id="lot-input-container">
                 <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="LOT----------" disabled id="lot-input">
@@ -241,10 +343,37 @@
                 </div>
               </div>
             </div>
+            <div style="border: 2px solid var(---primaryColor);
+            border-radius: 7px;
+            padding: 10px 1px;
+            width: 50%;
+            height: 40px; margin: 0 5px;">
+                <input type="text"style="width:99%; font-size: 12px;padding:2px; border:0;"
+                id="expDate"
+                placeholder="Expiry Date"
+                >
+              
+            </div>
+            <div style="border: 2px solid var(---primaryColor);
+            border-radius: 7px;
+            padding: 10px 1px;
+            width: 40%;
+            height: 40px;">
+                <input type="text"style="width:99%; font-size: 12px;padding:2px; border:0;"
+                id="lotQty"
+                placeholder="Stock Left"
+                >
+              
+            </div>
+
+
+
         </div>
         <div class="order-fullfilment-input   order-fullfilment-flex-child quantity-section">
             <div><input type="number" name="" min="0" id="order-quantity" class="classPointer" style="width:97%; font-size: 12px;padding:10px; height: 40px;
                 border-radius: 7px; border: 1px solid var(---primaryColor);" placeholder="Quantity"></div>
+                    <div><input type="number" name="" min="0" id="back-order" class="classPointer" style="width:97%; font-size: 12px;padding:10px; height: 40px;
+                        border-radius: 7px; border: 1px solid var(---primaryColor);" placeholder="Back Order" disabled></div>
             
                <div>
                 <span style="font-size: 32px;" class="classPointer"><i class="fa-solid fa-square-plus primaryColor" id="add-order" ></i></span>
@@ -279,9 +408,9 @@
   <div class="amount-due-section">
       <div class="note-other-charges">
           <table>
-            <tr><td>Point received :</td><td>200 points</td></tr>
+            <!-- <tr><td>Point received :</td><td>200 points</td></tr> -->
             <tr><td> <label for="note" style="vertical-align: text-top;">Warehouse Location</label></td>
-                <td>Porthacourt Warehouse</td>
+                <td id="warehose_location"></td>
             </tr>
               <tr><td> <label for="note" style="vertical-align: text-top;">Note</label></td>
                 <td><textarea name="" id="note" cols="30" rows="3"></textarea></td>
@@ -314,7 +443,7 @@
         <div class="customer-type customer-details-flex-child"> <span class="customer-details-heading">Grandtotal :</span> <span> 0.00</span></div> -->
       </div>
   </div>
-  <div style="text-align: center;"><button class="btn-primary btn-lg" style="width: 70%; margin: 20px 0;">Submit Order</button></div>
+  <div style="text-align: center;"><button class="btn-success btn-lg" style="width: 70%; margin: 20px 0;" id="save_order">Submit Order</button></div>
     </section>
 </div>
    </div>
@@ -323,6 +452,17 @@
     <script src="data.js"></script>
 </body>
 <script>
+
+
+    setTimeout(()=>{
+        readAll();
+        fetctPro();
+        setTimeout(()=>{
+            mapdescription(prodArray)
+            mapCusmerNames(customerArray)
+        },200)
+        },500)
+
     //////////////////////////////General/////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////
     locations =[
@@ -333,13 +473,14 @@
      "Lagos-warehosue"
 
     ]
+    let prodLots = [];
+   let  stockIn = 0;
+   let unitPrice = 0;
 let customer_order = {
     description:"",
     sku:"",
     lot:"",
     qty:"",
-    unitPrice:"",
-    stockIn:""
 }
 
     let sales_toggle_status=true;
@@ -406,12 +547,22 @@ let customer_order = {
 let discountAllowed = 0;
 let subTotal = 0;
 let grandTotal = 0;
-mapLot(lots);
-mapCusmerNames(customers)
-mapSku( productSku)
+
 mapdescription(products)
 mapLocation(locations)
+customer_orders = {
+  
 
+        order:
+            {
+                customerId:"",
+                orderNumber:"",
+                pointReceived:"",
+                warehouse:"",raisedBy:"",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Open",
+                prod:[]
+}
+}
 
  function uploadCutomerDetails(data){
     document.getElementById("customer-name").innerHTML= data[0].name
@@ -419,6 +570,14 @@ mapLocation(locations)
       $("#customer-phone").text(data[0].phoneNumber);
       $("#customer-type").text(data[0].customerType);
       $("#customer-point").text(data[0].AccumulatedPoint);
+      console.log(data[0].id)
+      customer_orders.id= data[0].id
+      customer_orders.order.customerId = data[0].id
+    //   customer_orders.name= data[0].name
+    //   customer_orders.email=data[0].email
+    //   customer_order.phoneNumber=data[0].phoneNumber
+    //   customer_orders.customerType=(data[0].customerType);
+    
 
  }
 
@@ -462,7 +621,7 @@ function emptyInput(){
  $("#add-order").on("click",()=>{
    if(!checkIncompleteInput()){
     $(".alert-error").hide()
-     let totalAmount = parseFloat(customer_order.qty)*parseFloat(customer_order.unitPrice);
+     let totalAmount = parseFloat(customer_order.qty)*parseFloat(unitPrice);
      subTotal += totalAmount;
      $("#sub-total").text(subTotal+".00")
      $("#grand_total").text(subTotal+discountAllowed+".00")
@@ -485,20 +644,21 @@ function emptyInput(){
         tr.append(td2);
         td3.textContent = customer_order.lot;
         tr.append(td3);
-        td4.textContent = customer_order.unitPrice;
+        td4.textContent = unitPrice;
         tr.append(td4);
-        td5.textContent = customer_order.stockIn;
+        td5.textContent =stockIn;
         tr.append(td5);
         td6.textContent= customer_order.qty;
         tr.append(td6);
-        let backOrder = 0;
-        if( parseInt(customer_order.stockIn) - parseInt(customer_order.qty) < 0){
-           backOrder = Math.abs(parseInt(customer_order.stockIn) - parseInt(customer_order.qty) )
-        };
+        let backOrder = $("#back-order").val();
+        // if( parseInt(stockIn) - parseInt(customer_order.qty) < 0){
+        //    backOrder = Math.abs(parseInt(stockIn) - parseInt(customer_order.qty) )
+        // };
         td7.textContent = backOrder;
         tr.append(td7);
         td8.textContent = totalAmount;
     tr.append(td8);
+    customer_orders.order.prod.push(customer_order)
 
          $("#order-detail-table").append(tr);
          $(".order-details-section").show();
@@ -513,18 +673,18 @@ function emptyInput(){
 
 
  $("#lot-input-container").on("mouseleave",()=>{
-    mapLot(lots);
+    mapLot(prodLots);
     $("#search-lot").val()
 })
-$("#sku-input-container").on("mouseleave",()=>{
+// $("#sku-input-container").on("mouseleave",()=>{
 
-    mapSku(productSku)
-    $("#search-sku").val("")
-})
+//     mapSku(productSku)
+//     $("#search-sku").val("")
+// })
 
 
 $("#description-input-container").on("mouseleave",()=>{
-    mapdescription(products);
+    mapdescription(prodArray);
     $("#search-description").val("")
 })
 
@@ -542,6 +702,19 @@ $("#description-input-container").on("mouseleave",()=>{
 
 $("#order-quantity").on("change",(e)=>{
 customer_order.qty = e.target.value
+  // if( parseInt(stockIn) - parseInt(customer_order.qty) < 0){
+        //    backOrder = Math.abs(parseInt(stockIn) - parseInt(customer_order.qty) )
+        // };
+$("#back-order").val(
+    ()=>{
+      let back_order=  $("#lotQty").val()-customer_order.qty;
+        return  back_order<0? Math.abs(back_order):0;
+    }
+    
+
+)
+
+
 })
 
 $("#search-description").on("keypress",(e)=>{
@@ -549,7 +722,7 @@ $("#search-description").on("keypress",(e)=>{
         return  (product["description"].toLowerCase()).includes(e.target.value.toLowerCase())
     })
    
-    mapdescription(data)
+  
 
  })
 
@@ -557,21 +730,21 @@ $("#search-description").on("keypress",(e)=>{
     data = lots.filter((product)=>{
         return  product["lot"].includes(e.target.value)
     })
-    mapLot(data)
+    mapLot(prodLots)
 
  })
 
- $("#search-sku").on("keypress",(e)=>{
-    data = productSku.filter((product)=>{
-        return  (product.toLowerCase()).includes(e.target.value.toLowerCase())
-    })
-    mapSku(data)
+//  $("#search-sku").on("keypress",(e)=>{
+//     data = productSku.filter((product)=>{
+//         return  (product.toLowerCase()).includes(e.target.value.toLowerCase())
+//     })
+//     mapSku(data)
 
- })
+//  })
   
  $("#search-input").on("keypress",(e)=>{
-    data = customers.filter((customer)=>{
-        return  customer["name"].includes(e.target.value)
+    data = customerArray.filter((customer)=>{
+        return  (customer["name"]).toLowerCase().includes(e.target.value.toLowerCase())
     })
     mapCusmerNames(data)
 
@@ -587,6 +760,8 @@ $("#search-description").on("keypress",(e)=>{
          p.innerHTML= location
          p.onclick =()=>{
             $("#warehouse-input").val(p.innerHTML)
+            $("#warehose_location").text(p.innerHTML)
+            customer_orders.order.warehouse= p.innerHTML
 
          }
          return  $("#warehouses").append(p)
@@ -598,14 +773,20 @@ function mapdescription(data){
      data.map((product)=>{
          let p = document.createElement("p");
          p.setAttribute("class","classPointer select-menu")
-         p.innerHTML= product.description
+         p.innerHTML= product. prodName
          p.onclick =()=>{
             $("#description-input").val(p.innerHTML)
             const product_description= data.filter((prod_descript)=>{
-                return prod_descript.description.includes(p.innerHTML)
+                return prod_descript.prodName.includes(p.innerHTML)
             })
-           customer_order.description=product_description[0].description;
-           customer_order.unitPrice=product_description[0].unitPrice;
+           customer_order.description=product_description[0].prodName;
+            unitPrice=product_description[0].unit_price;
+            console.log(unitPrice)
+            prodLots = product_description[0].lots
+            $("#sku-input").val(product_description[0].sku)
+            customer_order.sku=product_description[0].sku
+            console.log(prodLots)
+            mapLot(prodLots);
            console.log(customer_order)
          }
          return  $("#descriptions").append(p)
@@ -614,36 +795,44 @@ function mapdescription(data){
 
   }
 
-  function mapSku(data){
-    $("#skus").empty();
-     data.map((product)=>{
-         let p = document.createElement("p");
-         p.setAttribute("class","classPointer select-menu")
-         p.innerHTML= product
-         p.onclick =()=>{
-            $("#sku-input").val(p.innerHTML)
-            customer_order.sku=p.innerHTML;
-            console.log(customer_order)
-         }
-         return  $("#skus").append(p)
 
-     })
 
-  }
+
+
+//   function mapSku(data){
+//     $("#skus").empty();
+//      data.map((product)=>{
+//          let p = document.createElement("p");
+//          p.setAttribute("class","classPointer select-menu")
+//          p.innerHTML= product
+//          p.onclick =()=>{
+//             $("#sku-input").val(p.innerHTML)
+//             customer_order.sku=p.innerHTML;
+//             console.log(customer_order)
+//          }
+//          return  $("#skus").append(p)
+
+//      })
+
+//   }
 
  function mapLot(data){
     $("#lot-numbers").empty();
      data.map((product)=>{
          let p = document.createElement("p");
          p.setAttribute("class","classPointer select-menu")
-         p.innerHTML= product.lot
+         p.innerHTML= product.lotNumber
          p.onclick =()=>{
             $("#lot-input").val(p.innerHTML)
             const product_lot = data.filter((prod_lot)=>{
-                return prod_lot.lot.includes(p.innerHTML)
+                return prod_lot.lotNumber.includes(p.innerHTML)
             })
-           customer_order.lot= product_lot[0].lot;
-           customer_order.stockIn=product_lot[0].qty;
+           customer_order.lot= product_lot[0].lotNumber;
+           $("#expDate").val(product_lot[0].expiryDate)
+           $("#lotQty").val(product_lot[0].qty)
+           $("#order-quantity").val("")
+           $("#back-order").val("")
+            stockIn=product_lot[0].qty;
          }
          return  $("#lot-numbers").append(p)
 
@@ -651,6 +840,7 @@ function mapdescription(data){
  }
 
  function mapCusmerNames(data){
+    //  console.log(data)
     $("#customer-names").empty();
      data.map((customer)=>{
          let p = document.createElement("p");
@@ -670,6 +860,61 @@ function mapdescription(data){
      })
  }
 
+ $("#order-number").on("change",()=>{
+    $("#order-fulfiled").hide()
+    let store = db.transaction("order").objectStore("order");
+    let orderNumber = parseInt( $("#order-number").val())
+    let request = store.get(orderNumber);
+    console.log(orderNumber);
+   
+    request.onsuccess= ()=>{
+        if(request.result){
+            $("#order-fulfiled").text(" Order Already Picked!")
+           
+            $("#order-fulfiled").show()
+     console.log("order exit")
+        }
+        else{
+            $("#order-fulfiled").text("New Order!");
+           $("#order-fulfiled").show();
+            console.log("new order");
+        }
+      
+    }
+    request.onerror=()=>{
+        return "error"
+    }
+ })
 
+
+
+
+$("#save_order").on("click",()=>{
+   
+    customer_orders.order.orderNumber = Math.floor(Math.random() * 99999) + 1000;
+    customer_orders.order.pointReceived=200;
+    customer_orders.order.raisedBy = "Bunmi Banwo"
+    var store = db.transaction("customer","readwrite").objectStore("customer");
+    var store1 = db.transaction("order","readwrite").objectStore("order");
+    var request = store.get(3456);
+    request.onerror = function(event) {
+      alert("Unable to retrieve daa from database!");
+   };
+   let fetchedCustomer ;
+    request.onsuccess = function(event) {
+        if(request.result){
+     fetchedCustomer= request.result
+     fetchedCustomer.AccumulatedPoint = fetchedCustomer.AccumulatedPoint+customer_orders.order.pointReceived;
+     fetchedCustomer.order.push(customer_orders.order)
+     store.put(fetchedCustomer)
+
+     }
+    }
+    store1.add(customer_orders.order)
+
+
+  window.location.href = "sales.html"
+ 
+})
 </script>
 </html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboasrd!!!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href= "css/all.css" />
+    <link rel="stylesheet" href="receive-inventory.css">
+</head>
+<body>
+  <section class="page-container">
+      <!-- side start here -->
+      <div class="side-bar">
+        <div class="side-bar-header">
+         <div class="side-bar-header-img-container">
+             <img src="assests/images/max-logo.png" alt="">
+         </div>
+        </div>
+        <div class="side-bar-container">
+         <ul>
+             <li class="classPointer" id="menu1"> <i class="fa-solid fa-gear"></i>Dashboard</li>
+             <li  id="menu2">  <span class="classPointer side-bar-heading" id="toggle-sales">
+                 
+                 <div><span>  <i class="fa-solid fa-basket-shopping"></i></span>  <span>Sales</span> </div> 
+                 <div>
+                   
+                     <span id="sales-left">
+                         <i class="fa-solid fa-angle-left"></i>
+                     </span>
+                     <span id="sales-down">  <i class="fa-solid fa-angle-down"></i></span>
+                    
+                 </div>
+             </span> 
+         </li>
+ 
+                 <ul id="sales-container"hidden>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Raise Order</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Full Order</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>Sales Lists</span> </div> </li>
+                     <li> <div><span><i class="fa-solid fa-cart-shopping"></i></span>  <span>All Sales list</span> </div> </li>
+             </ul>
+ 
+             <li id="menu3">
+                 <span class="classPointer side-bar-heading" id="toggle-inv">
+                 
+                     <div><span><i class="fa-solid fa-file-invoice"></i></span>  <span>Manage Inventory</span> </div> 
+                     <div>
+                       
+                         <span id="inv-left">
+                             <i class="fa-solid fa-angle-left"></i>
+                         </span>
+                         <span id="inv-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                        
+                     </div>
+                 </span> 
+             </li>
+                 
+                 <ul id="inv-container" >
+                 <li> <div><span><i class="fa-solid fa-truck"></i></span>  <span>Transfer Inventory</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li>
+               
+             </ul>
+ 
+             <li id="menu4">
+ 
+                 <span class="classPointer side-bar-heading" id="toggle-report">
+                 
+                     <div><span><i class="fa-solid fa-magnifying-glass-chart"></i> </span>  <span>Report</span> </div> 
+                   
+                     <div>
+                       
+                         <span id="report-left">
+                             <i class="fa-solid fa-angle-left"></i>
+                         </span>
+                         <span id="report-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                        
+                     </div>
+                 </span> 
+            
+             </li>
+             <ul id="report-container"hidden>
+                 <li> <div><span><i class="fa-solid fa-chart-pie"></i></span>  <span>Sales Report</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-money-bill-trend-up"></i></span>  <span>Customer purchase Report</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-arrows-rotate"></i></span>  <span>Back Orders</span> </div> </li>
+                 <li> <div><span><i class="fa-solid fa-chart-bar"></i></span>  <span>Stock report</span> </div> </li>
+         </ul>
+         </ul>
+ 
+        </div>
+ 
+    </div>
+    <!-- sidebar end here -->
+   <div class="main-body">
+    <nav class="nav-bar">
+        <div class="nav-menu">
+            <div class="left-menu nav-menu-flex-child"><i class="fa-solid fa-bars classPointer" id="menu-bar"></i></div>
+            <div class="center-menu nav-menu-flex-child">
+                <div class="logo-container">
+                    <!-- <img src="assests/images/max-logo.png" alt=""> -->
+                
+                </div>
+            </div>
+            <div class="right-menu nav-menu-flex-child">
+                <div class="dropdown">
+                    <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
+                    <div class="dropdown-content">
+                      <a href="#"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
+                    </div>
+                  </div> 
+
+            </div>
+        </div>
+    </nav>
+    <section class="main-body-container">
+
+
+        <div class="order-fulfiment-section">
+            <div style="text-align:start;" id="refresh-search-container"><button class="btn-sm btn-secondary-dark" id="add-new-transfer">Make new Request <span><i class="fa-solid fa-plus"></i></span> </button></div>
+        <div class="order-fulfiment-section">
+            <div style="text-align: end;" id="refresh-search-container"><button class="btn-sm btn-secondary-light" id="refresh_search">Refresh data <span><i class="fa-solid fa-arrows-rotate" ></i></span> </button></div>
+             <div class="filter-section">
+                 <div class="status-filter-section">
+                     <select name="" id="select-order-status">
+                         <option value=""selected disabled>Select Transfer status</option>
+                         <option value="Close">Closed</option>
+                         <option value="Open">Decline</option>
+                         <option value="Close">Pending</option>
+                     </select>
+                 </div>
+                 <div class="status-filter-section">
+                    <div class="search-order-number">
+                        <div class="input-order-number"> <input type="text" placeholder="Filter by Ticket" id="order-number"></div>
+                        <div class="input-order-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                       
+                    </div>
+                   
+                </div>
+                <div class="status-filter-section">
+                <input type="date" name="" id="date-raised">
+                </div>
+             </div>
+             <div class="table-section">
+                 <table style="width: 100%;">
+                    <thead><tr>
+                        <th>Request-Ticket</th>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr></thead>
+                    <tbody id="orders">
+                        <tr>
+                            <td>98315</td>
+                            <td>Lagos</td>
+                            <td>Porthacourt</td>
+                            <td>2022-10-05</td>
+                            <td>Declined</td>
+                            <td>
+                                <div class="action-buttons btn-success btn-sm"><span class="action-heading">Action</span><span class="action-heading"><i class="fa fa-caret-down"></i></span><div class="action-button-dropdown-content"><p class="action-button"><span class="action-heading">view Transfer</span><span class="action-heading"><i class="fa-solid fa-eye"></i></span></p>
+                                    <p class="action-button"><span class="action-heading">Cancel Transfer</span><span class="action-heading"><i class="fa-solid fa-trash-can"></i></span></p>
+                                
+                                </div></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>76063</td>
+                            <td>Lagos</td>
+                            <td>Porthacourt</td>
+                            <td>2022-10-05</td>
+                            <td>Closed</td>
+                            <td>
+                                <div class="action-buttons btn-success btn-sm"><span class="action-heading">Action</span><span class="action-heading"><i class="fa fa-caret-down"></i></span><div class="action-button-dropdown-content"><p class="action-button"><span class="action-heading">view Transfer</span><span class="action-heading"><i class="fa-solid fa-eye"></i></span></p>
+                                    <!-- <p class="action-button"><span class="action-heading">Cancel Transfer</span><span class="action-heading"><i class="fa-solid fa-trash-can"></i></span></p> -->
+                                
+                                </div></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>75094</td>
+                            <td>Lagos</td>
+                            <td>Porthacourt</td>
+                            <td>2022-10-05</td>
+                            <td>pending</td>
+                            <td>
+                                <div class="action-buttons btn-success btn-sm"><span class="action-heading">Action</span><span class="action-heading"><i class="fa fa-caret-down"></i></span><div class="action-button-dropdown-content"><p class="action-button"><span class="action-heading">view Transfer</span><span class="action-heading"><i class="fa-solid fa-eye"></i></span></p>
+                                    <!-- <p class="action-button"><span class="action-heading">Cancel Transfer</span><span class="action-heading"><i class="fa-solid fa-trash-can"></i></span></p> -->
+                                
+                                </div></div>
+                            </td>
+                        </tr>
+
+    
+                    </tbody>
+               
+                
+                </table>
+             </div>
+         </div>
+        </div>
+
+
+
+
+    </section>
+   </div>
+  </section>
+    <script src="jquery.js"></script>
+</body>
+<script>
+    let sales_toggle_status=true;
+    let inv_toggle_status=true;
+
+     $("#toggle-sales").on("click",()=>{
+       sales_toggle_status= !sales_toggle_status
+         tooggle_sales()
+     })
+     $("#toggle-inv").on("click",()=>{
+       inv_toggle_status= !inv_toggle_status
+         tooggle_inv()
+     })
+
+     function tooggle_sales(){
+        if(sales_toggle_status){
+            $("#sales-down").hide();
+            $("#sales-left").show();
+            $("#sales-container").hide();
+            $("#menu2").removeAttr("class","active")
+        }else{
+            $("#sales-down").show();
+            $("#sales-left").hide()
+            $("#sales-container").show();
+          $("#menu2").attr("class","active")
+        }
+    }
+    function tooggle_inv(){
+        if(inv_toggle_status){
+            $("#inv-down").hide();
+            $("#inv-left").show();
+            $("#inv-container").hide();
+            $("#menu3").removeAttr("class","active")
+        }else{
+            $("#inv-down").show();
+            $("#inv-left").hide()
+            $("#inv-container").show();
+          $("#menu3").attr("class","active")
+        }
+    }
+
+
+
+
+
+
+
+</script>
+</html>

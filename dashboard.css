@@ -47,8 +47,6 @@
     font-size: 60px;
 }
 .growth-card{
-    display: flex;
-    justify-content:space-between;
     box-shadow: 0px 1px 5px 1px rgba(0, 0,0, 0.1);
     flex-grow: 0;
     flex: 30%;
@@ -115,4 +113,16 @@ td{
     box-shadow: 0px 0px 5px 1px rgba(0, 0,0, 0.1);
     padding: 20px;
 
+}
+.growth-card-child{
+    font-weight: 700;
+    font-size: 18px;
+    padding: 10px;
+}
+.branch-sales>td{
+    /* background-color: none; */
+    padding: 3px;
+}
+.branch-sales:nth-child(odd){
+    background-color: transparent;
 }

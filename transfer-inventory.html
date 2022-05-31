@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboasrd!!!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href= "css/all.css" />
+<link rel="stylesheet" href="transfer-inventory.css">
+<script>
+    //prefixes of implementation that we want to test
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || 
+window.webkitIndexedDB || window.msIndexedDB;
+
+//prefixes of window.IDB objects
+window.IDBTransaction = window.IDBTransaction || 
+window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || 
+window.msIDBKeyRange
+
+if (!window.indexedDB) {
+window.alert("Your browser doesn't support a stable version of IndexedDB.")
+}
+
+
+
+var db;
+var request = window.indexedDB.open("maxdb", 1);
+
+request.onerror = function(event) {
+console.log("error: ");
+};
+
+request.onsuccess = function(event) {
+db = request.result;
+console.log("success: "+ db);
+};
+
+
+
+
+function readAll() {
+var store = db.transaction("order").objectStore("order");
+var index = store.index("warehouse");
+var singleKeyRange = IDBKeyRange.only("MAX-HQ");
+index.openCursor(singleKeyRange, "prev").onsuccess = function(event) {
+var cursor = event.target.result;
+if (cursor) {
+console.log(cursor)
+let td1 = document.createElement("td");
+let td2 = document.createElement("td");
+let td3 = document.createElement("td");
+let td4 = document.createElement("td");
+let tr = document.createElement("tr");
+td1.textContent= cursor.value.orderNumber;
+td2.textContent=cursor.value.date
+td3.textContent=cursor.value.orderStatus
+tr.append(td1)
+tr.append(td2)
+tr.append(td3)
+
+
+
+const span1 = document.createElement("span")
+const span2 = document.createElement("span")
+span1.setAttribute("class","action-heading")
+span2.setAttribute("class","action-heading")
+span1.textContent="Action"
+const caretIcon = document.createElement("i")
+caretIcon.setAttribute("class","fa fa-caret-down")
+span2.append(caretIcon)
+const div = document.createElement("div")
+div.setAttribute("class","action-button-dropdown-content")
+const p1 = document.createElement("p")
+const p2 = document.createElement("p")
+p1.setAttribute("class","action-button")
+p2.setAttribute("class","action-button")
+const span3 = document.createElement("span")
+const span4 = document.createElement("span")
+const span5 = document.createElement("span")
+const span6 = document.createElement("span")
+const cash_register_icon = document.createElement("i")
+const pdf_icon = document.createElement("i")
+cash_register_icon.setAttribute("class","fa-solid fa-cash-register")
+pdf_icon.setAttribute("class","fa-solid fa-file-pdf")
+span3.setAttribute("class","action-heading")
+span4.setAttribute("class","action-heading")
+span5.setAttribute("class","action-heading")
+span6.setAttribute("class","action-heading")
+span3.textContent="Review Order";
+span5.textContent="view order";
+span4.append(cash_register_icon)
+span6.append(pdf_icon)
+p1.append(span3)
+p1.append(span4)
+p2.append(span5)
+p2.append(span6)
+div.append(p1)
+div.append(p2)
+const action_btns = document.createElement("div")
+action_btns.setAttribute("class","action-buttons btn-success btn-sm")
+action_btns.append(span1)
+action_btns.append(span2)
+action_btns.append(div)
+td4.append(action_btns);
+tr.append(td4)
+$("#orders").append(tr)
+
+
+cursor.continue();
+}
+
+else {
+console.log(cursor)
+}
+};
+}
+setTimeout(()=>{
+readAll();
+},500)
+</script>
+
+</head>
+<body>
+    <div class="modal-container" id="view-tranfer-modal-container" hidden>
+        <div class="modal-wrapper" id="view-tranfer" hidden>
+               <div class="modal-header"><span>View Transfer</span></div>
+               <div style=" overflow-y: auto; height: 85%;">
+                  <div class="fulfil-order-heading"> <div><span>Transfer-Ticket : </span><span>346096</span></div>  
+                   </div>  
+                  <div class="tramsfer-details">
+                      <div class="customer-details">
+                          <div class="customer-name customer-details-flex-child"><span class="customer-details-heading">Origin :</span> <span id="customer-name">Lagos</span> </div>
+                          <div class="customer-name customer-details-flex-child"><span class="customer-details-heading">Destination :</span> <span id="customer-name">Porthacourt</span> </div>
+                          <div class="customer-email customer-details-flex-child"><span class="customer-details-heading"> Date Transfer :</span> <span id="customer-email">2022-17-05</span></div>
+                          <div class="customer-email customer-details-flex-child"><span class="customer-details-heading"> Logistic  Name:</span> <span id="customer-email">Fedex</span></div>
+                          <div class="customer-email customer-details-flex-child"><span class="customer-details-heading"> Logistic Phone Number :</span> <span id="customer-email">08023----098</span></div>
+                          <div class="customer-email customer-details-flex-child"><span class="customer-details-heading"> Logistic Email:</span> <span id="customer-email">fedex@gmail.com</span></div>
+                  </div>
+                  <div class="fulfil-order-customer-order-details">
+                      <table style="width: 80%;">
+                          <thead>
+                              <th>Description</th>
+                              <th>Sku</th>
+                              <th>LOT</th>
+                              <th>Quantity</th>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                              </tr>
+                              <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                            <tr>
+                                <td>Basic Enrollment Kit EN NG</td><td>	MENNGX002306</td><td>8002001</td> <td>1000</td>		
+                            </tr>
+                          </tbody>
+                      </table>
+                  </div>
+               </div>
+              
+               <div class="modal-footer"> <button class="btn-sm btn-secondary-light" id="close-view-transfer-form">Close</button></div>
+   </div>
+  </div>
+    </div>
+
+
+
+
+    <div class="modal-container" id="new-tranfer-modal-container" hidden>
+        <div class="modal-wrapper" id="new-transfer" hidden>
+               <div class="modal-header"><span>New Transfer</span></div>
+               <div style=" overflow-y: auto; height: 85%; padding: 0 30px;">
+
+
+     <div class="location">
+                    <div class="order-fullfilment-input   location-flex-child" id="warehouse-input-container">
+                        <div class="order-fullfilment-input-container">
+                            <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="Transfer From.........(chose a warehouse to transfer From)" disabled id="warehouse-input">
+                            <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+                    
+                            <div class="warehouse-dropdown-container dropdown-orderdetails-menu" hidden  id="warehouse-dropdown-menu" >
+                                <div>
+                                  <div id="warehouses" style="max-height: 100px; overflow-y: scroll;">
+                                  </div>
+                                </div>
+                              </div>
+            
+                        </div>
+                    </div>
+                    <div class="order-fullfilment-input   location-flex-child" id="to-warehouse-input-container">
+                        <div class="order-fullfilment-input-container">
+                            <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="Transfer To.........(chose a warehouse to transfer to)" disabled id="to-warehouse-input">
+                            <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+                    
+                            <div class="warehouse-dropdown-container dropdown-orderdetails-menu" hidden  id="to-warehouse-dropdown-menu" >
+                                <div>
+                                  <div id="to-warehouses" style="max-height: 100px; overflow-y: scroll;">
+                                  </div>
+                                </div>
+                              </div>
+            
+                        </div>
+                    </div>
+     </div>
+    <hr>
+
+
+
+
+
+
+                   <div class="order-fullfilment">
+
+
+            
+                    <div class="order-fullfilment-input  order-fullfilment-flex-child">
+                       
+            
+                        <div class="order-fullfilment-input-container " id="description-input-container">
+                            <input type="text" class="classPointer" style="width:97%; font-size: 16px;padding:2px; border: 0;" placeholder="Description----------" disabled  id="description-input">
+                            <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+                           <span hidden><i class="fa-solid fa-caret-up classPointer primaryColor"></i></span> 
+                           <div class="warehouse-dropdown-container dropdown-orderdetails-menu" id="description-dropdown-menu"  hidden>
+                            <div>
+                              <input type="text" placeholder="Search....." style="height:40px; width: 95%;" id="search-description">
+                              <div id="descriptions" style="max-height: 100px; overflow-y: scroll; width: 100%; padding: 0;">
+                            
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+            
+            
+            
+                    <div class="order-fullfilment-input  order-fullfilment-flex-child">
+            
+            
+                        <div class="order-fullfilment-input-container " id="sku-input-container">
+                            <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="SKU----------" disabled id="sku-input">
+                            <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+                           <span hidden><i class="fa-solid fa-caret-up classPointer primaryColor"></i></span> 
+                           <div class="warehouse-dropdown-container dropdown-orderdetails-menu"  id="sku-dropdown-menu"  hidden>
+                            <div>
+                              <input type="text" placeholder="Search....." style="height:40px; width: 95%;" id="search-sku">
+                              <div id="skus" style="max-height: 100px; overflow-y: scroll;">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="order-fullfilment-input   order-fullfilment-flex-child">
+            
+                        <div class="order-fullfilment-input-container" id="lot-input-container">
+                            <input type="text" class="classPointer" style="width:97%; font-size: 12px;padding:2px; border: 0;" placeholder="LOT----------" disabled id="lot-input">
+                            <i class="fa-solid fa-caret-down classPointer primaryColor"></i>
+                           <span hidden><i class="fa-solid fa-caret-up classPointer primaryColor"></i></span> 
+                           <div class="dropdown-orderdetails-menu" id="lot-dropdown-menu" hidden>
+                            <div>
+                              <input type="text" placeholder="Search....." style="height:40px; width: 95%;" id="search-lot">
+                              <div id="lot-numbers" style="max-height: 100px; overflow-y: scroll;">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="order-fullfilment-input   order-fullfilment-flex-child quantity-section">
+                        <div id="input-number"><input type="number" name="" min="0" id="order-quantity" class="classPointer" style="width:97%; font-size: 12px;padding:10px; height: 40px;
+                            border-radius: 7px; border: 1px solid var(---primaryColor);" placeholder="Quantity"></div>
+                        
+                           <div>
+                            <span style="font-size: 32px;" class="classPointer"><i class="fa-solid fa-square-plus primaryColor" id="add-order" ></i></span>
+                        </div>
+                    </div>
+                 
+                  
+                </div>
+              <hr>
+              <div class="order-details-section">
+                  <div class="tranfer-table" hidden>
+                    <table style=" box-shadow: 0px 0px 1px 2px rgba(0,0,0,0.1); margin-bottom:20px;" id="order-details">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>SKU</th>
+                                <th>LOT</th>
+                                <th>Quantity</th>
+                                <th>Action</th>
+                           
+                            </tr>
+                        </thead>
+                        <tbody id="order-detail-table">
+                             
+                        </tbody>
+                    </table>
+                  </div>
+
+            </div>
+              
+               <div class="modal-footer">  <button class="btn-sm btn-secondary-dark" id="save">Send</button><button class="btn-sm btn-secondary-light" id="close-new-transfer-form">Close</button></div>
+   </div>
+  </div>
+    </div>
+  <section class="page-container">
+      <!-- side start here -->
+      <div class="side-bar">
+        <div class="side-bar-header">
+         <div class="side-bar-header-img-container">
+             <img src="assests/images/max-logo.png" alt="">
+         </div>
+        </div>
+        <div class="side-bar-container">
+         <ul>
+            <li id="menu3">
+                <span class="classPointer side-bar-heading" id="toggle-inv">
+                
+                    <div><span><i class="fa-solid fa-file-invoice"></i></span>  <span>Manage Inventory</span> </div> 
+                    <div>
+                      
+                        <span id="inv-left">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </span>
+                        <span id="inv-down" hidden>  <i class="fa-solid fa-angle-down"></i></span>
+                       
+                    </div>
+                </span> 
+            </li>
+                
+                <ul id="inv-container" >
+                    <li> <div><a href="order-fulfilment.html"><span><i class="fa-solid fa-gauge"></i><span></span>  Inventory Dashboard</span> </a> </div> </li>
+                <li> <div><a href="transfer-inventory.html"><span><i class="fa-solid fa-truck"></i></span><span></span>Transfer Inventory</span> </a> </div> </li>
+                <li> <div><a href="receive-inventory.html"><span><i class="fa-solid fa-dolly"></i></span>  <span>Receive Inventory</span> </a><div> </li>
+                <li> <div><span><i class="fa-solid fa-cubes-stacked"></i></span>  <span>Stock Count</span> </div> </li>
+              
+            </ul>
+ 
+
+         </ul>
+ 
+        </div>
+ 
+    </div>
+    <!-- sidebar end here -->
+   <div class="main-body">
+    <nav class="nav-bar">
+        <div class="nav-menu">
+            <div class="left-menu nav-menu-flex-child"><i class="fa-solid fa-bars classPointer" id="menu-bar"></i></div>
+            <div class="center-menu nav-menu-flex-child">
+                <div class="logo-container">
+                    <!-- <img src="assests/images/max-logo.png" alt=""> -->
+                
+                </div>
+            </div>
+            <div class="right-menu nav-menu-flex-child">
+                <div class="dropdown">
+                    <span class="dropbtn classPointer"> olawalw@max-international.com  <i class="fa fa-caret-down"></i></span>
+                    <div class="dropdown-content">
+                      <a href="index.html"> <span style="margin: 0 20px;">Log-out</span>  <i class="fa-solid fa-right-from-bracket"></i></a>
+                      <a href="#"> <span style="margin: 0 20px;">Settings</span> <i class="fa-solid fa-gear" ></i></a>
+                    </div>
+                  </div> 
+
+            </div>
+        </div>
+    </nav>
+    <!-- navbar end here -->
+    <section class="main-body-container">
+        <div class="order-fulfiment-section">
+            <div style="text-align:start;" id="refresh-search-container"><button class="btn-sm btn-secondary-dark" id="add-new-transfer">Make new transfer <span><i class="fa-solid fa-plus"></i></span> </button></div>
+        <div class="order-fulfiment-section">
+            <div style="text-align: end;" id="refresh-search-container"><button class="btn-sm btn-secondary-light" id="refresh_search">Refresh data <span><i class="fa-solid fa-arrows-rotate" ></i></span> </button></div>
+             <div class="filter-section">
+                 <div class="status-filter-section">
+                     <select name="" id="select-order-status">
+                         <option value=""selected disabled>Select Transfer status</option>
+                         <option value="Open">Incomplete</option>
+                         <option value="Close">Pending</option>
+                         <option value="Close">Recieved</option>
+                     </select>
+                 </div>
+                 <div class="status-filter-section">
+                    <div class="search-order-number">
+                        <div class="input-order-number"> <input type="text" placeholder="Filter by Ticket" id="order-number"></div>
+                        <div class="input-order-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                       
+                    </div>
+                   
+                </div>
+                <div class="status-filter-section">
+                <input type="date" name="" id="date-raised">
+                </div>
+             </div>
+             <div class="table-section">
+                 <table style="width: 100%;">
+                    <thead><tr>
+                        <th>Transfer-Ticket</th>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr></thead>
+                    <tbody id="orders">
+                        <tr>
+                            <td>98315</td>
+                            <td>Lagos</td>
+                            <td>Porthacourt</td>
+                            <td>2022-10-05</td>
+                            <td>pending</td>
+                            <td>
+                                <div class="action-buttons btn-success btn-sm"><span class="action-heading">Action</span><span class="action-heading"><i class="fa fa-caret-down"></i></span><div class="action-button-dropdown-content"><p class="action-button"><span class="action-heading">view Transfer</span><span class="action-heading"><i class="fa-solid fa-eye"></i></span></p>
+                                    <p class="action-button"><span class="action-heading">Cancel Transfer</span><span class="action-heading"><i class="fa-solid fa-trash-can"></i></span></p>
+                                
+                                </div></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>76063</td>
+                            <td>Lagos</td>
+                            <td>Porthacourt</td>
+                            <td>2022-10-05</td>
+                            <td>received</td>
+                            <td>
+                                <div class="action-buttons btn-success btn-sm"><span class="action-heading">Action</span><span class="action-heading"><i class="fa fa-caret-down"></i></span><div class="action-button-dropdown-content"><p class="action-button"><span class="action-heading">view Transfer</span><span class="action-heading"><i class="fa-solid fa-eye"></i></span></p>
+                                    <!-- <p class="action-button"><span class="action-heading">Cancel Transfer</span><span class="action-heading"><i class="fa-solid fa-trash-can"></i></span></p> -->
+                                
+                                </div></div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>75094</td>
+                            <td>Lagos</td>
+                            <td>Porthacourt</td>
+                            <td>2022-10-05</td>
+                            <td>received</td>
+                            <td>
+                                <div class="action-buttons btn-success btn-sm"><span class="action-heading">Action</span><span class="action-heading"><i class="fa fa-caret-down"></i></span><div class="action-button-dropdown-content"><p class="action-button"><span class="action-heading">view Transfer</span><span class="action-heading"><i class="fa-solid fa-eye"></i></span></p>
+                                    <!-- <p class="action-button"><span class="action-heading">Cancel Transfer</span><span class="action-heading"><i class="fa-solid fa-trash-can"></i></span></p> -->
+                                
+                                </div></div>
+                            </td>
+                        </tr>
+
+    
+                    </tbody>
+               
+                
+                </table>
+             </div>
+         </div>
+        </div>
+    </section>
+   </div>
+  </section>
+    <script src="jquery.js"></script>
+    <script src="data.js"></script>
+</body>
+<script>
+    let sales_toggle_status=true;
+    let inv_toggle_status=true;
+
+     $("#toggle-sales").on("click",()=>{
+       sales_toggle_status= !sales_toggle_status
+         tooggle_sales()
+     })
+     $("#toggle-inv").on("click",()=>{
+       inv_toggle_status= !inv_toggle_status
+         tooggle_inv()
+     })
+
+     function tooggle_sales(){
+        if(sales_toggle_status){
+            $("#sales-down").hide();
+            $("#sales-left").show();
+            $("#sales-container").hide();
+            $("#menu2").removeAttr("class","active")
+        }else{
+            $("#sales-down").show();
+            $("#sales-left").hide()
+            $("#sales-container").show();
+          $("#menu2").attr("class","active")
+        }
+    }
+    function tooggle_inv(){
+        if(inv_toggle_status){
+            $("#inv-down").hide();
+            $("#inv-left").show();
+            $("#inv-container").hide();
+            $("#menu3").removeAttr("class","active")
+        }else{
+            $("#inv-down").show();
+            $("#inv-left").hide()
+            $("#inv-container").show();
+          $("#menu3").attr("class","active")
+        }
+    }
+    ////////////////////////////////////////////////////////////////////////////////////
+    $("#close-view-transfer-form").on("click",()=>{
+        $("#view-tranfer-modal-container").hide();
+   
+            $("#view-tranfer").hide()
+
+
+    })
+
+$(".action-button").on("click",()=>{
+    $("#view-tranfer-modal-container").show();
+        setTimeout(()=>{
+            $("#view-tranfer").slideDown(500)
+
+        },100)
+})
+
+    $("#close-new-transfer-form").on("click",()=>{
+        $("#new-tranfer-modal-container").hide();
+       
+            $("#new-transfer").hide()
+
+    })
+
+    $("#add-new-transfer").on("click",()=>{
+        $("#new-tranfer-modal-container").show();
+        setTimeout(()=>{
+            $("#new-transfer").slideDown(500)
+
+        },100)
+    })
+
+    locations =[
+        "Max-HQ",
+         "Abuja",
+        "Porthacourt",
+       " Ibadan",
+     "Lagos-warehosue"
+
+    ]
+    let transfer_inventory = {
+    description:"",
+    sku:"",
+    lot:"",
+    qty:"",
+}
+
+    mapLot(lots);
+mapSku( productSku)
+mapdescription(products)
+mapLocation(locations)
+mapLocationTo(locations)
+
+$("#lot-input-container").on("mouseleave",()=>{
+    mapLot(lots);
+    $("#search-lot").val()
+})
+$("#sku-input-container").on("mouseleave",()=>{
+
+    mapSku(productSku)
+    $("#search-sku").val("")
+})
+
+
+$("#description-input-container").on("mouseleave",()=>{
+    mapdescription(products);
+    $("#search-description").val("")
+})
+
+
+$("#order-quantity").on("change",(e)=>{
+transfer_inventory.qty = e.target.value
+})
+
+$("#search-description").on("keypress",(e)=>{
+    data = products.filter((product)=>{
+        return  (product["description"].toLowerCase()).includes(e.target.value.toLowerCase())
+    })
+   
+    mapdescription(data)
+
+ })
+
+ $("#search-lot").on("keypress",(e)=>{
+    data = lots.filter((product)=>{
+        return  product["lot"].includes(e.target.value)
+    })
+    mapLot(data)
+
+ })
+
+ $("#search-sku").on("keypress",(e)=>{
+    data = productSku.filter((product)=>{
+        return  (product.toLowerCase()).includes(e.target.value.toLowerCase())
+    })
+    mapSku(data)
+
+ })
+
+
+function emptyInput(){
+    transfer_inventory={};
+    $("#lot-input").val("")
+    $("#description-input").val("")
+    $("#sku-input").val("")
+    $("#order-quantity").val("")
+
+
+}
+function checkIncompleteInput(){
+      let data = [
+          transfer_inventory.description,
+          transfer_inventory.lot,
+          transfer_inventory.sku,
+          transfer_inventory.qty
+        ];
+     return data.some((dat)=>{
+       return  dat=="";
+     })
+
+}
+
+$("#add-order").on("click",()=>{
+   if(!checkIncompleteInput()){
+         let tr = document.createElement("tr")
+         let td1 = document.createElement("td")
+         let td2 = document.createElement("td")
+         let td3 = document.createElement("td")
+         let td4 = document.createElement("td")
+         let td5 = document.createElement("td")
+     
+        td1.textContent = transfer_inventory.description;
+        tr.append(td1)
+        td2.textContent = transfer_inventory.sku
+        tr.append(td2);
+        td3.textContent = transfer_inventory.lot;
+        tr.append(td3);
+        td4.textContent = transfer_inventory.qty;
+        tr.append(td4);
+        const p = document.createElement("p")
+        p.setAttribute("class","btn-secondary-light btn-sm")
+        const i = document.createElement("i");
+        i.setAttribute("class","fa-solid fa-trash-can")
+        p.textContent="remove "
+        p.append(i)
+        td5.append(p)
+        tr.append(td5);
+
+         $("#order-detail-table").append(tr);
+         console.log(tr)
+         $(".tranfer-table").show();
+        emptyInput();
+    }
+ })
+ function mapLocationTo(data){
+    $("#to-warehouses").empty();
+     data.map((location)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= location
+         p.onclick =()=>{
+            $("#to-warehouse-input").val(p.innerHTML)
+
+         }
+         return  $("#to-warehouses").append(p)
+
+     })
+ }
+    function mapLocation(data){
+    $("#warehouses").empty();
+     data.map((location)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= location
+         p.onclick =()=>{
+            $("#warehouse-input").val(p.innerHTML)
+
+         }
+         return  $("#warehouses").append(p)
+
+     })
+ }
+function mapdescription(data){
+    $("#descriptions").empty();
+     data.map((product)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= product.description
+         p.onclick =()=>{
+            $("#description-input").val(p.innerHTML)
+            const product_description= data.filter((prod_descript)=>{
+                return prod_descript.description.includes(p.innerHTML)
+            })
+           transfer_inventory.description=product_description[0].description;
+          console.log(transfer_inventory)
+         }
+         return  $("#descriptions").append(p)
+
+     })
+
+  }
+
+  function mapSku(data){
+    $("#skus").empty();
+     data.map((product)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= product
+         p.onclick =()=>{
+            $("#sku-input").val(p.innerHTML)
+            transfer_inventory.sku=p.innerHTML;
+           console.log(transfer_inventory)
+         }
+         return  $("#skus").append(p)
+
+     })
+
+  }
+
+ function mapLot(data){
+    $("#lot-numbers").empty();
+     data.map((product)=>{
+         let p = document.createElement("p");
+         p.setAttribute("class","classPointer select-menu")
+         p.innerHTML= product.lot
+         p.onclick =()=>{
+            $("#lot-input").val(p.innerHTML)
+            const product_lot = data.filter((prod_lot)=>{
+                return prod_lot.lot.includes(p.innerHTML)
+            })
+           transfer_inventory.lot= product_lot[0].lot;
+         }
+         return  $("#lot-numbers").append(p)
+
+     })
+ }
+
+
+
+
+
+
+
+</script>
+</html>

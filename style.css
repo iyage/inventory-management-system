@@ -10,7 +10,7 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 :root{
-    ---primaryColor:#5EB8C9;
+    ---primaryColor:rgb(94, 184, 201);
     ---secondaryColor:#F5F5F5;
 }
 .primaryColor{
@@ -73,13 +73,23 @@ body{
 .btn-secondary-light:hover {
     background-color:transparent;
     border: 1px solid red;
-    color: black
+    color: red
 
 }
 .btn-secondary-dark:hover {
     background-color:transparent;
     border: 1px solid blue;
-    color: black;
+    color:blue;
+
+}
+.btn-success{
+    background-color: green;
+    color: white
+}
+.btn-success:hover {
+    background-color:transparent;
+    border: 1px solid green;
+    color: green
 
 }
 
@@ -99,6 +109,16 @@ body{
     left: 0;
     text-align: end;
 }
+.modal-container{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 9999999999999999999;
+    height: 100vh;
+}
 
 
 .page-container{
@@ -113,7 +133,7 @@ body{
     left: 0;
     height: 100vh;
     background-color: var(---primaryColor);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 .main-body{
     flex: 8;
@@ -243,16 +263,25 @@ background-color: var(---secondaryColor);
 color: var(---primaryColor);
 }
 #sales-container>li,#inv-container>li,#report-container>li{
-    color: var(---primaryColor);
-    border-bottom: 0.5px solid black;
+    color: var(---primaryColor) !important;
+    border-bottom: 0.5px solid black !important;
 }
 #sales-container>li:hover,#inv-container>li:hover,#report-container>li:hover{
-    background-color: var(---primaryColor);
-    color: var(---secondaryColor);
+    background-color: var(---primaryColor) !important;
+    color: var(---secondaryColor) !important;
 }
 li{
     cursor: pointer;
 }
 .active{
     background-color: grey;;
+}
+a{
+    color: var(---primaryColor);
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+#sales-container>li:hover,#inv-container>li:hover a,#report-container>li:hover{
+    color: var(---secondaryColor) !important;  
 }

@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+                 //prefixes of implementation that we want to test
+                 window.indexedDB = window.indexedDB || window.mozIndexedDB || 
+         window.webkitIndexedDB || window.msIndexedDB;
+         
+         //prefixes of window.IDB objects
+         window.IDBTransaction = window.IDBTransaction || 
+         window.webkitIDBTransaction || window.msIDBTransaction;
+         window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || 
+         window.msIDBKeyRange
+         
+         if (!window.indexedDB) {
+            window.alert("Your browser doesn't support a stable version of IndexedDB.")
+         }
+
+ 
+
+         var db;
+         var request = window.indexedDB.open("max-database", 1);
+         
+         request.onerror = function(event) {
+            console.log("error: ");
+         };
+         
+         request.onsuccess = function(event) {
+            db = request.result;
+            console.log("success: "+ db);
+         };
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+      orders=[
+      {
+                orderNumber:5256,
+                pointReceived:200,
+                  warehouse:"Max-HQ",raisedBy:"Richard Adewale",
+                  date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                  customerId:1,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:5044,
+                pointReceived:200,
+                 warehouse:"Abuja",raisedBy:"Bunmi Ofunrein",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:1,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:6631,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Ofunrein",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:1,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+
+    
+
+
+            {
+                orderNumber:5043,
+                pointReceived:200,
+                 warehouse:"Abuja",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:2,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:2781,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Banwo",
+                 date:new Date().toISOString().slice(0, 10),
+                 orderStatus:"Close",
+                 customerId:2,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:5648,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Ofunrein",
+                 date:"2022-05-07",orderStatus:"Close",
+                 customerId:2,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+           
+           
+           
+           
+           
+            {
+                orderNumber:1171,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Bamwo",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:3,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:10538,
+                pointReceived:200,
+                 warehouse:"Abuja",raisedBy:"Bunmi Ofunrein",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:3,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:3512,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Banwo",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:3,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+
+
+
+
+            {
+                orderNumber:8075,
+                pointReceived:200,
+                warehouse:"Abuja",raisedBy:"Richard Adewale",
+                date: "2022-05-09",orderStatus:"Close",
+                customerId:4,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:2520,
+                pointReceived:200,
+                warehouse:"Porthacourt",raisedBy:"Richard Adewale",
+                 date: "2022-05-09",orderStatus:"Close",
+                 customerId:4,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:8301,
+                pointReceived:200,
+                warehouse:"Porthacourt",raisedBy:"Richard Adewale",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:4,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+ 
+       
+            
+            {
+                orderNumber:4083,
+                pointReceived:200,
+                warehouse:"Porthacourt",raisedBy:"Chibuzor Ugochukwu",
+                date: "2022-05-09",orderStatus:"Close",
+                customerId:5,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:9931,
+                pointReceived:200,
+                warehouse:"Porthacourt",raisedBy:"Chibuzor Ugochukwu",
+                date: "2022-05-09",orderStatus:"Close",
+                customerId:5,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:3897,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:5,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+
+
+            {
+                orderNumber:29549,
+                pointReceived:200,
+                warehouse:"Lagos-warehosue",raisedBy:"Chibuzor Ugochukwu",
+                date: "2022-05-09",orderStatus:"Close",
+                customerId:6,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:1445,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Ofunrein",
+                 date: "2022-05-09",orderStatus:"Close",
+                 customerId:6,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:8639,
+                pointReceived:200,
+                 warehouse:"Lagos-warehosue",raisedBy:"Bunmi Ofunrein",
+                 date: "2022-05-09",orderStatus:"Close",
+                 customerId:6,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+
+
+            {
+                orderNumber:88025,
+                pointReceived:200,
+                 warehouse:"Lagos-warehosue",raisedBy:"Bunmi Banwo",
+                 date: "2022-05-09",orderStatus:"Close",
+                 customerId:7,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:34905,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Banwo",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:7,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:60042,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                date: "2022-05-09",orderStatus:"Close",
+                customerId:7,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+           
+            {
+                orderNumber:89904,
+                pointReceived:200,
+                 warehouse:"Lagos-warehosue",raisedBy:"Bunmi Ofunrein",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:8,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:16281,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Banwo",
+                 date:new Date().toISOString().slice(0, 10),
+                 orderStatus:"Close",
+                 customerId:9,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:9117,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:10,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            
+            {
+                orderNumber:74225,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:11,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:88104,
+                pointReceived:200,
+                warehouse:"Lagos-warehosue",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:12,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                    
+                ]
+            },
+            {
+                orderNumber:39197,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:13,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:15798,
+                pointReceived:200,
+                warehouse:"Lagos-warehosue",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                 customerId:14,
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            } 
+
+
+      ]
+      
+
+
+/////////////////////////////////////////////////////////////////////////////////
+let products =[
+    {
+        prodName:"SWITCH 1 MO EN NG",
+        sku:"DENNGA002001",
+        unit_price:15000,
+        lots:[
+            {
+                lotNumber:"9002001",
+                qty:50,
+                expiryDate:"2024-10-05"
+            },
+            {
+                lotNumber:"9002001",
+                qty:50,
+                expiryDate:"2023-10-05"
+            },
+            {
+                lotNumber:"9002002",
+                qty:20,
+                expiryDate:"2022-11-05"
+            }
+        ]
+
+    },
+
+    {
+        prodName:"Cellgevity lWk Single EN NG",
+        sku:"MENUSA001502",
+        unit_price:10000,
+        lots:[
+            {
+                lotNumber:"9002001",
+                qty:50,
+                expiryDate:"2024-10-05"
+            },
+            {
+                lotNumber:"9002005",
+                qty:50,
+                expiryDate:"2023-10-05"
+            },
+            {
+                lotNumber:"9002002",
+                qty:20,
+                expiryDate:"2022-11-05"
+            }
+        ]
+
+    },
+    {
+        prodName:"Basic Enrollment Kit EN NG",
+        sku:"NENNGF000302",
+        unit_price:5000,
+        lots:[
+            {
+                lotNumber:"9002001",
+                qty:50,
+                expiryDate:"2024-10-05"
+            },
+            {
+                lotNumber:"9002005",
+                qty:50,
+                expiryDate:"2023-10-05"
+            },
+            {
+                lotNumber:"9002002",
+                qty:20,
+                expiryDate:"2022-11-05"
+            }
+        ]
+
+    }
+
+]
+
+
+
+////////////////////////////////////////////////////////////////////////////
+let customers=[
+    {
+        id:1,
+        name:"Aagaard Ally",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"walk in",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:5256,
+                pointReceived:200,
+                  warehouse:"Max-HQ",raisedBy:"Richard Adewale",
+                  date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:5044,
+                pointReceived:200,
+                 warehouse:"Abuja",raisedBy:"Bunmi Ofunrein",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:6631,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Ofunrein",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+        
+        ]
+    },
+    { id:2,
+        name:" Abadi Alex",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"walk in",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:5043,
+                pointReceived:200,
+                 warehouse:"Abuja",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:2781,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Banwo",
+                 date:new Date().toISOString().slice(0, 10),
+                 orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:5648,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Ofunrein",
+                 date:"2022-05-07",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+        
+        ]
+
+
+},
+    {
+        id:3,
+        name:"  Abbatiello Nicole Lyla",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"walk in",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:1171,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Bamwo",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:10538,
+                pointReceived:200,
+                 warehouse:"Abuja",raisedBy:"Bunmi Ofunrein",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:3512,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Banwo",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+        
+        ]
+},
+    {
+        id:4,
+        name:"Abbott Elizabeth Kylia",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"walk in",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:8075,
+                pointReceived:200,
+                warehouse:"Abuja",raisedBy:"Richard Adewale",
+                date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:2520,
+                pointReceived:200,
+                warehouse:"Porthacourt",raisedBy:"Richard Adewale",
+                 date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:8301,
+                pointReceived:200,
+                warehouse:"Porthacourt",raisedBy:"Richard Adewale",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+        
+        ]
+    },
+    { id:5,
+        name:" Abbott Bryce",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"Partner",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:4083,
+                pointReceived:200,
+                warehouse:"Porthacourt",raisedBy:"Chibuzor Ugochukwu",
+                date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:9931,
+                pointReceived:200,
+                warehouse:"Porthacourt",raisedBy:"Chibuzor Ugochukwu",
+                date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:3897,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+        
+        ]
+    },
+    { id:6,
+        name:"Baker-LaViolette Michael Anthony",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"Partner",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:29549,
+                pointReceived:200,
+                warehouse:"Lagos-warehosue",raisedBy:"Chibuzor Ugochukwu",
+                date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:1445,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Ofunrein",
+                 date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:8639,
+                pointReceived:200,
+                 warehouse:"Lagos-warehosue",raisedBy:"Bunmi Ofunrein",
+                 date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+        
+        ]
+    },
+    { id:7,
+        name:"Baldwin Millie",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"Partner",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:88025,
+                pointReceived:200,
+                 warehouse:"Lagos-warehosue",raisedBy:"Bunmi Banwo",
+                 date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:34905,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Banwo",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            },
+            {
+                orderNumber:60042,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                date: "2022-05-09",orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:10
+                    },
+                    
+                ]
+            },
+        
+        ]
+    },
+    { id:8,
+        name:" Balentyne Grant",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"Partner",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:89904,
+                pointReceived:200,
+                 warehouse:"Lagos-warehosue",raisedBy:"Bunmi Ofunrein",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            }  
+        ]
+    },
+    { id:9,
+        name:"Bellavia Cortezi",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"walk in",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:16281,
+                pointReceived:200,
+                 warehouse:"Max-HQ",raisedBy:"Bunmi Banwo",
+                 date:new Date().toISOString().slice(0, 10),
+                 orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            }  
+        ]
+    },
+    { id:10,
+        name:"Belle-Isle Jonatha",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"Partner",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:9117,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            }  
+        ]
+    },
+    { id:11,
+        name:"Bellis Joseph Andre",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"walk in",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:74225,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            }  
+        ]
+    },
+    { id:12,
+        name:"Campbell Rain Morgan",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"Partner",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:88104,
+                pointReceived:200,
+                warehouse:"Lagos-warehosue",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            }  
+        ]
+    },
+    { id:13,
+        name:" Campbell Parker Lyrik",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"walk in",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:39197,
+                pointReceived:200,
+                warehouse:"Max-HQ",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            }  
+        ]
+    },
+    { id:14,
+        name:" Campbell Anne Cordellia",
+        email:"ally@gmail.com",
+        phoneNumber:"0802347890075",
+        customerType:"Partner",
+        AccumulatedPoint:780,
+        order:[
+            {
+                orderNumber:15798,
+                pointReceived:200,
+                warehouse:"Lagos-warehosue",raisedBy:"Chibuzor Ugochukwu",
+                 date:new Date().toISOString().slice(0, 10),orderStatus:"Close",
+                prod:[
+                    {
+                        description:"SWITCH 1 MO EN NG",
+                        sku: "DENNGA002001",
+                        lot:"9002001",
+                        qty:20
+                },
+                    {
+                        description:"Basic Enrollment Kit EN NG",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    {
+                        description:"Max357 Bro Single EN US",
+                        sku:  "NENNGF000302",
+                        lot:"9002001",
+                        qty:30
+                    },
+                    
+                ]
+            }  
+        ]
+    }
+
+]
+
+request.onupgradeneeded = function(event) {
+            var db = event.target.result;
+            var customerStore= db.createObjectStore("customer", {keyPath: "id",autoIncrement:true});
+            var orderStore = db.createObjectStore("order",{keyPath:"orderNumber",autoIncrement:false})
+            var productStore =  db.createObjectStore("products",{keyPath:"sku",autoIncrement:false})
+            orderStore.createIndex("raisedBy","raisedBy",{unique:false})
+            orderStore.createIndex("warehouse","warehouse",{unique:false})
+            orderStore.createIndex("customerId","customerId",{unique:false})
+            
+            for (var i in customers) {
+              customerStore.add(customers[i]);
+            }
+
+            for (var i in orders) {
+              orderStore.add(orders[i]);
+            }
+
+         for(var i in products)  productStore.add(products[i]);
+
+
+         }
+
+
+
+
+
+
+    </script>
+    <style>
+        body{
+            background-color: var(---primaryColor);
+        }
+        .login-container{
+           display: flex;
+           justify-content: center;
+           align-items: center;
+          height: 100vh;
+      
+        }
+        .login-form{
+            background-color:var(---secondaryColor);
+            height: 400px;
+          width: 30%;
+          box-shadow: 0 0 5px 1px rgba(0, 0,0,0.2);
+          border-radius: 10px;
+      
+         
+        }
+        .form-input{
+            width: 80%;
+            height: 40px;
+            border-radius: 7px;
+            border: 1px solid var(---primaryColor);
+            text-align: center;
+            font-size: 18px;
+    
+        }
+        .form-input-group{
+            margin: 20px 0;
+        }
+        a{
+            text-decoration: none;
+            color: var(---primaryColor);
+            
+        }
+        a:visited{
+            color: var(---primaryColor);
+        }
+    
+    </style>
+</head>
+<link rel="stylesheet" href="style.css">
+
+<body>
+    <div class="login-container">
+   
+
+        <div class="login-form">
+            <h3 style="text-align:center;padding: 20px; color:var(---primaryColor);">Login</h3>
+          
+
+            <form action="" style="text-align:center;margin-top: 30px;">
+              <div class="form-input-group">
+                  <input type="email" placeholder="email" id="email" class="form-input">
+
+              </div>
+                <div class="form-input-group">
+                    <input type="password" name="" id="password" placeholder="password" class="form-input">
+                </div>
+                <div class="form-input-group">
+                    <button class="btn-success btn-lg" style="width: 80%;" id="submit"> Login</button>
+                </div>
+                <hr>
+                <div class="form-input-group">
+                    <a href="#">forgot password?</a>
+                </div>
+               
+            </form>
+       
+          
+        </div>
+
+      
+
+    </div>
+   <script src="jquery.js"></script>
+
+<script>
+     $("#submit").on("click",(e)=>{
+         e.preventDefault()
+        if($("#email").val()=="admin@max.com"&&$("#password").val()=="admin") window.location.href="dashboard.html"
+        else if($("#email").val()=="inv-manager@max.com"&&$("#password").val()=="inv-manager") window.location.href="order-fulfilment.html"
+        else if($("#email").val()=="sales-amb@max.com"&&$("#password").val()=="sales-amb") window.location.href="sales.html"
+        else alert("invalid email/password")
+
+     })
+   
+
+</script>
+
+
+
+
+    
+</body>
+</html>
